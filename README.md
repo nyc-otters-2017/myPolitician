@@ -1,24 +1,27 @@
-# README
+# myPolitician
+***
+Raji Ayinla, Nick Himmel, Kane Lee
+---
+## Summary
+  myPolitician is an interactive map that is used to find a user's representative
+  at all levels of the government. From the state to the local level, users will
+  also be able to see upcoming policies that will be voted on by their representative
+  as well as how they have voted on past policies.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  The goal of myPolitician is to provide users with a tool that empowers them with
+  information on how their representatives are voting on their behalf. With this
+  information, users can then make informed decisions on who they want to represent
+  them.
 
-Things you may want to cover:
+## Technologies
+---
+### APIs
+***
+  - ProPublica's Congress API
+  - Google's Civic Information API
+  - Meetup's API
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Libraries
+***
+  - Ruby on Rails
+  - D3.js
