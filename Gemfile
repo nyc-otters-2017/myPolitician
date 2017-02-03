@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '~>2.3.0'
-
+gem 'd3-rails'
 gem 'pry'
 gem 'react-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
