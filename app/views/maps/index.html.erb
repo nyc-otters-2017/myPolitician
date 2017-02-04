@@ -2,15 +2,14 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <script src="//d3js.org/topojson.v1.min.js"></script>
-
 <script>
 
   var width = 960,
-      height = 500,
+      height = 900,
       active = d3.select(null);
 
   var projection = d3.geo.albersUsa()
-    .scale(100)
+    .scale(2000)
 
   var zoom = d3.behavior.zoom()
     .translate([0, 0])
