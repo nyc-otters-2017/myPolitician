@@ -1,6 +1,7 @@
 <h1>United States of America</h1>
 <!DOCTYPE html>
 <meta charset="utf-8">
+<script src="//d3js.org/topojson.v1.min.js"></script>
 <script>
 
   var width = 960,
@@ -35,15 +36,24 @@
     .call(zoom.event);
 
   d3.json("NYS_Congressional_Districts.json", function(error, us) {
-     if (error) throw error;
+    if (error) throw error;
       console.log(us)
 
+    g.selectAll("path")
+      .data(topojson.feature(us, us.objects.districts).features)
+      .enter().append("path")
+        .attr("d", path)
+        .attr("class", "feature");
+
+    g.append("path")
+      .datum(topojson.mesh(us, us.objects.districts, function(a, b) {return a != b; }))
+      .attr("class", "mesh")
+      .attr("d", path);
   })
 
-  function reset() {
-
-  }
   function zoomed() {
     g.style("stroke-width", 1.5 / d3.event.scale + "px");
+    g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")")
   }
+
 </script>
