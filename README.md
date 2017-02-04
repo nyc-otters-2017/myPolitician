@@ -16,12 +16,12 @@ Raji Ayinla, Nick Himmel, Kane Lee
 ## Technologies
 
 ### APIs
-***
+
   - ProPublica's Congress API
   - Google's Civic Information API
   - Meetup's API
 
 ### Libraries
-***
+
   - Ruby on Rails
   - D3.js
