@@ -57,7 +57,7 @@ class State extends React.Component{
       d3.json("NYS_Congressional_Districts.json", function(error, us) {
         if (error) throw error;
           console.log(us)
-
+          console.log(us)
         g.selectAll("path")
           .data(topojson.feature(us, us.objects.districts).features)
           .enter().append("path")
