@@ -2,18 +2,19 @@
 @import "bootstrap";
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
 }
 
 h1 {
+  font-size: 3em;
   font-variant: small-caps;
+  font-family: 'Raleway', sans-serif;
   // text-transform: uppercase;
 }
 
 #logo {
   font-weight: 900;
-
   font-size: 4em;
 }
 
