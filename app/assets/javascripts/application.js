@@ -23,8 +23,10 @@ $(document).ready(function() {
       height = 900,
       active = d3.select(null);
 
-  var projection = d3.geo.albersUsa()
-    .scale(2000)
+  var projection = d3.geo.mercator()
+    .center([-73.94, 40.70])
+    .scale(5000)
+    .translate([(width) / 2, (height)/2]);
 
   var zoom = d3.behavior.zoom()
     .translate([0, 0])
