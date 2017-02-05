@@ -18,7 +18,7 @@ class App extends React.Component {
       url: 'https://api.propublica.org/congress/v1/members/senate/NY/current.json',
 
       beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", ENV['CONGRESS_API'])
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
       }
 
     })
@@ -34,7 +34,7 @@ class App extends React.Component {
       url:'https://api.propublica.org/congress/v1/members/house/NY/' + district + '/current.json',
 
       beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", ENV['CONGRESS_API'])
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
       }
 
     })

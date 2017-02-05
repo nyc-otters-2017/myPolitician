@@ -17,7 +17,7 @@ class RepProf extends React.Component{
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
 
         beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", ENV['CONGRESS_API'])
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
       }
 
       })
@@ -28,21 +28,22 @@ class RepProf extends React.Component{
   }
 
 
-  getMemberBills(member){
+  getMemberBills(id){
 
 
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
 
         beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", ENV['CONGRESS_API'])
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
       }
 
       })
       .then(function(response){
 
         this.setState({repBills: response.results[0].bills})
-        debugger
+         // debugger
+
     }.bind(this))
   }
 
@@ -94,17 +95,23 @@ class RepProf extends React.Component{
                 <span><p>youtube:{prof.youtube_account}</p></span>
                 <p>Bills Sponsored: {prof.roles[0].bills_sponsored}</p>
                 <p>Upcoming Bills</p>
-                {this.state.repBills.map(function(bill){
-                  return(
-                  <p>{bill.title}</p>
-                  )
-                })}
+
               </div>
 
-             )
+            )
           }
-       )
+        )
       )
+
+         var billDetails = (
+
+        this.state.repBills.map(function(bill){
+            return(
+              <p>{bill.title}</p>
+            )
+         })
+      )
+
     }
 
 
@@ -112,6 +119,8 @@ class RepProf extends React.Component{
        <div>
           <p id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
           {details}
+          {billDetails}
+
         </div>
       )
   }
