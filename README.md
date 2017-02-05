@@ -1,7 +1,7 @@
 # myPolitician
-***
+
 Raji Ayinla, Nick Himmel, Kane Lee
----
+
 ## Summary
   myPolitician is an interactive map that is used to find a user's representative
   at all levels of the government. From the state to the local level, users will
@@ -14,14 +14,14 @@ Raji Ayinla, Nick Himmel, Kane Lee
   them.
 
 ## Technologies
----
+
 ### APIs
-***
+
   - ProPublica's Congress API
   - Google's Civic Information API
   - Meetup's API
 
 ### Libraries
-***
+
   - Ruby on Rails
   - D3.js

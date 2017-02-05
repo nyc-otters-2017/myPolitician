@@ -1,0 +1,23 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+.feature {
+  fill: #e8e8e8;
+  cursor: pointer;
+}
+
+.feature:hover{
+  fill: #bbb;
+}
+
+.mesh {
+  fill: none;
+  stroke: #bbb;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
