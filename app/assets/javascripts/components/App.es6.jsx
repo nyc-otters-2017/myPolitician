@@ -1,5 +1,5 @@
 class App extends React.Component {
-<<<<<<< HEAD
+
 
   constructor(){
     super()

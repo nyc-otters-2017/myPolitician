@@ -32,9 +32,7 @@ $(document).ready(function() {
   var zoom = d3.behavior.zoom()
     .translate([0, 0])
     .scale(1)
-
     .scaleExtent ([1, 20])
-
     .on("zoom", zoomed);
 
   var path = d3.geo.path()
@@ -44,11 +42,12 @@ $(document).ready(function() {
     .attr("width", width)
     .attr("height", height)
 
+
   svg.append("rect")
     .attr("class", "background")
     .attr("width", width)
     .attr("height", height)
-
+    .on("click", reset);
   var g = svg.append("g");
 
   svg
@@ -63,13 +62,44 @@ $(document).ready(function() {
       .data(topojson.feature(us, us.objects.districts).features)
       .enter().append("path")
         .attr("d", path)
-        .attr("class", "feature");
+        .attr("class", "feature")
+        .on("click", clicked);
 
     g.append("path")
       .datum(topojson.mesh(us, us.objects.districts, function(a, b) {return a != b; }))
       .attr("class", "mesh")
       .attr("d", path);
   })
+
+  function clicked(d) {
+    console.log(d)
+  if (active.node() === this) return reset();
+  active.classed("active", false);
+  active = d3.select(this).classed("active", true);
+
+  var bounds = path.bounds(d),
+      dx = bounds[1][0] - bounds[0][0],
+      dy = bounds[1][1] - bounds[0][1],
+      x = (bounds[0][0] + bounds[1][0]) / 2,
+      y = (bounds[0][1] + bounds[1][1]) / 2,
+      scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height))),
+      translate = [width / 2 - scale * x, height / 2 - scale * y];
+
+  svg.transition()
+      .duration(750)
+      .call(zoom.translate(translate).scale(scale).event);
+}
+
+
+function reset() {
+  active.classed("active", false);
+  active = d3.select(null);
+
+  svg.transition()
+      .duration(750)
+      .call(zoom.translate([0, 0]).scale(1).event);
+}
+
 
   function zoomed() {
     g.style("stroke-width", 1.5 / d3.event.scale + "px");

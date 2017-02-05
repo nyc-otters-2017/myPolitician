@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root 'maps#index'
 
   get 'maps/districts' => 'maps#districts'
-s
+
 end

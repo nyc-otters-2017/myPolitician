@@ -32,7 +32,6 @@ class State extends React.Component{
         <div>
           <p>Note: this is a broad demonstration of how the app should function</p>
           <span><button onClick={this.handleClick}>NY</button></span>
-          <p><a onClick={}>
           <span><button onClick={this.handleClick}>CA</button></span>
           <span><button  onClick={this.handleClick}>TX</button></span>
         </div>
