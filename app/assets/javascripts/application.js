@@ -29,7 +29,7 @@ $(document).ready(function() {
   var zoom = d3.behavior.zoom()
     .translate([0, 0])
     .scale(1)
-    .scaleExtent ([1, 8])
+    .scaleExtent ([1 / 2, 10])
     .on("zoom", zoomed);
 
   var path = d3.geo.path()
