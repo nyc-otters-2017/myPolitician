@@ -25,7 +25,7 @@ $(document).ready(function() {
 
   var projection = d3.geo.mercator()
     .scale(5000)
-    .center([-75.94, 41.70])
+    .center([-75.94, 42.80])
     .translate([ width / 2, height / 2 ] );
 
   var zoom = d3.behavior.zoom()
@@ -48,8 +48,12 @@ $(document).ready(function() {
     .attr("width", width)
     .attr("height", height)
 
-  var tooltip = d3.select(".map-container").append("div")
+  var tooltip = d3.select(".test").append("div")
     .attr("class", "tooltip");
+    tooltip.append('h2')
+      .attr("class", "congressional-district")
+    tooltip.append('h3')
+      .attr("class", "congressman")
 
   var g = svg.append("g");
 
@@ -75,8 +79,10 @@ $(document).ready(function() {
       console.log(g.selectAll("path"))
 
       var features = g.selectAll(".feature")
-        .on("click", function(us) {
+        .on("mouseover", function(us) {
           console.log(us);
+          tooltip.select(".congressional-district").html(us.properties.NAMELSAD)
+          tooltip.select(".congressman").html(us.properties.CD_Name)
           // tooltip.style('display', 'block');
           // // d3.select(this).classed("active", true).movetoFront();
       })
