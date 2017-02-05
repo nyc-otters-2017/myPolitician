@@ -77,6 +77,7 @@ class State extends React.Component{
             .on("click", function(us) {
 
               this.props.onGetHouseMember(us.properties.CD114FP)
+              this.props.onGetState()
 
               // tooltip.style('display', 'block');
               // // d3.select(this).classed("active", true).movetoFront();

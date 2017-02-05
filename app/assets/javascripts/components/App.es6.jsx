@@ -15,7 +15,7 @@ class App extends React.Component {
   getState(state){
 
     $.ajax({
-      url: 'https://api.propublica.org/congress/v1/members/house/' + state + '/current.json',
+      url: 'https://api.propublica.org/congress/v1/members/senate/NY/current.json',
 
       beforeSend: function(request) {
         request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")

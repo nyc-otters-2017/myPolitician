@@ -16,7 +16,7 @@ class RepPage extends React.Component{
     return(
       <section>
 
-        <h1>My Rep Info</h1>
+        <h1>My House Rep Info</h1>
 
         {this.props.houseMembers.map(function(rep, indx){
           return(
@@ -27,7 +27,7 @@ class RepPage extends React.Component{
 
         }.bind(this))}
 
-
+        <h1> My State Rep Info </h1>
 
         {this.props.reps.map(function(rep, indx){
           return(
