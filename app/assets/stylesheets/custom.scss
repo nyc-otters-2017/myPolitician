@@ -6,6 +6,10 @@
   pointer-events: all;
 }
 
+.map-container {
+  position: relative;
+}
+
 .feature {
   fill: #e8e8e8;
   cursor: pointer;
@@ -20,4 +24,20 @@
   stroke: #bbb;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.tooltip {
+  background-color: red;
+  box-shadow: 0 0 5px #999999;
+  color: #333;
+  // display: none;
+  font-size: 12px;
+  left: 130px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 95px;
+  width: 80px;
+  height: 100px;
+  z-index: 1;
 }

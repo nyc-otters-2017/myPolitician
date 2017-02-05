@@ -48,7 +48,7 @@ $(document).ready(function() {
     .attr("width", width)
     .attr("height", height)
 
-  var tooltipDiv = d3.select(".map-container").append("div")
+  var tooltip = d3.select(".map-container").append("div")
     .attr("class", "tooltip");
 
   var g = svg.append("g");
@@ -76,7 +76,8 @@ $(document).ready(function() {
 
       var features = g.selectAll(".feature")
         .on("mouseover", function(d) {
-          console.log(this);
+          tooltip.style('display', 'block');
+          // d3.select(this).classed("active", true).movetoFront();
       })
   })
 
