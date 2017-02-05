@@ -47,7 +47,14 @@ $(document).ready(function() {
     .attr("class", "background")
     .attr("width", width)
     .attr("height", height)
+
     .on("click", reset);
+
+
+  var tooltip = d3.select(".map-container").append("div")
+    .attr("class", "tooltip");
+
+
   var g = svg.append("g");
 
   svg
@@ -69,6 +76,15 @@ $(document).ready(function() {
       .datum(topojson.mesh(us, us.objects.districts, function(a, b) {return a != b; }))
       .attr("class", "mesh")
       .attr("d", path);
+
+      console.log(g.selectAll("path"))
+
+      var features = g.selectAll(".feature")
+        .on("click", function(us) {
+          console.log(us);
+          // tooltip.style('display', 'block');
+          // // d3.select(this).classed("active", true).movetoFront();
+      })
   })
 
   function clicked(d) {
