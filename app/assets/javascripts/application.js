@@ -48,6 +48,9 @@ $(document).ready(function() {
     .attr("width", width)
     .attr("height", height)
 
+  var tooltip = d3.select(".map-container").append("div")
+    .attr("class", "tooltip");
+
   var g = svg.append("g");
 
   svg
@@ -68,7 +71,18 @@ $(document).ready(function() {
       .datum(topojson.mesh(us, us.objects.districts, function(a, b) {return a != b; }))
       .attr("class", "mesh")
       .attr("d", path);
+
+      console.log(g.selectAll("path"))
+
+      var features = g.selectAll(".feature")
+        .on("click", function(us) {
+          console.log(us);
+          // tooltip.style('display', 'block');
+          // // d3.select(this).classed("active", true).movetoFront();
+      })
   })
+
+
 
   function zoomed() {
     g.style("stroke-width", 1.5 / d3.event.scale + "px");
