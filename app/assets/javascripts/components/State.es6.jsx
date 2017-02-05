@@ -75,6 +75,10 @@ class State extends React.Component{
             console.log(us.properties.NAMELSAD)
             tooltip.select(".congressional-district").html(us.properties.NAMELSAD)
             tooltip.select(".congressman").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
+            tooltip.style("opacity", 1);
+          })
+          .on("mouseout", function(us) {
+            tooltip.style("opacity", 0);
           })
 
         g.selectAll(".feature")
