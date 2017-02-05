@@ -17,7 +17,7 @@ class RepProf extends React.Component{
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
 
         beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "")
+        request.setRequestHeader("X-API-Key", ENV['CONGRESS_API'])
       }
 
       })
@@ -30,13 +30,12 @@ class RepProf extends React.Component{
 
   getMemberBills(member){
 
-      if
 
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
 
         beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "")
+        request.setRequestHeader("X-API-Key", ENV['CONGRESS_API'])
       }
 
       })
@@ -47,23 +46,23 @@ class RepProf extends React.Component{
     }.bind(this))
   }
 
-  getChamberBills(chamber){
+  // getChamberBills(chamber){
 
 
-      $.ajax({
-        url: 'https://api.propublica.org/congress/v1/115/'+ chamber + '/bills/introduced.json',
+  //     $.ajax({
+  //       url: 'https://api.propublica.org/congress/v1/115/'+ chamber + '/bills/introduced.json',
 
-        beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "")
-      }
+  //       beforeSend: function(request) {
+  //       request.setRequestHeader("X-API-Key", ENV['CONGRESS_API'])
+  //     }
 
-      })
-      .then(function(response){
+  //     })
+  //     .then(function(response){
 
-        this.setState({repBills: response.results[0].bills})
-        debugger
-    }.bind(this))
-  }
+  //       this.setState({repBills: response.results[0].bills})
+  //       debugger
+  //   }.bind(this))
+  // }
 
   handleClick(e){
     e.preventDefault()
@@ -75,7 +74,7 @@ class RepProf extends React.Component{
 
     this.getMember(memberId)
     this.getMemberBills(memberId)
-    this.getChamberBills(chamber)
+    // this.getChamberBills(chamber)
 
   }
 

@@ -17,5 +17,6 @@
 //= require components
 //= require_tree .
 //= require d3
+//= require dotenv-rails
 
 
