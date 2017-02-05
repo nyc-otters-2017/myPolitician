@@ -3,7 +3,7 @@ class RepProf extends React.Component{
   constructor(){
     super()
 
-    this.state = {show: false, singleRep: []}
+    this.state = {show: false, singleRep: [], repBills: []}
 
     this.handleClick = this.handleClick.bind(this)
     this.getMember = this.getMember.bind(this)
@@ -28,6 +28,43 @@ class RepProf extends React.Component{
   }
 
 
+  getMemberBills(member){
+
+      if
+
+      $.ajax({
+        url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
+
+        beforeSend: function(request) {
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
+      }
+
+      })
+      .then(function(response){
+
+        this.setState({repBills: response.results[0].bills})
+        debugger
+    }.bind(this))
+  }
+
+  getChamberBills(chamber){
+
+
+      $.ajax({
+        url: 'https://api.propublica.org/congress/v1/115/'+ chamber + '/bills/introduced.json',
+
+        beforeSend: function(request) {
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
+      }
+
+      })
+      .then(function(response){
+
+        this.setState({repBills: response.results[0].bills})
+        debugger
+    }.bind(this))
+  }
+
   handleClick(e){
     e.preventDefault()
 
@@ -37,8 +74,9 @@ class RepProf extends React.Component{
     memberId = this.refs[name].id
 
     this.getMember(memberId)
+    this.getMemberBills(memberId)
+    this.getChamberBills(chamber)
 
-    console.log(this.state.show)
   }
 
 
@@ -55,10 +93,13 @@ class RepProf extends React.Component{
                 <span><p>facebook:{prof.facebook_account}</p></span>
                 <span><p>twitter:{prof.twitter_account}</p></span>
                 <span><p>youtube:{prof.youtube_account}</p></span>
-
-
                 <p>Bills Sponsored: {prof.roles[0].bills_sponsored}</p>
-
+                <p>Upcoming Bills</p>
+                {this.state.repBills.map(function(bill){
+                  return(
+                  <p>{bill.title}</p>
+                  )
+                })}
               </div>
 
              )
