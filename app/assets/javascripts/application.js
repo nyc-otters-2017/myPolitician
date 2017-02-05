@@ -75,9 +75,10 @@ $(document).ready(function() {
       console.log(g.selectAll("path"))
 
       var features = g.selectAll(".feature")
-        .on("mouseover", function(d) {
-          tooltip.style('display', 'block');
-          // d3.select(this).classed("active", true).movetoFront();
+        .on("click", function(us) {
+          console.log(us);
+          // tooltip.style('display', 'block');
+          // // d3.select(this).classed("active", true).movetoFront();
       })
   })
 
