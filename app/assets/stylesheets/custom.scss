@@ -8,6 +8,7 @@ body {
 
 h1, h2, h3 {
   font-family: 'Raleway', sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 h1 {
@@ -28,6 +29,7 @@ h1 {
 .text-container {
   width: 25%;
 }
+
 .map-container {
   width: 75%;
   position: relative;
@@ -71,7 +73,7 @@ svg {
   position: absolute;
   text-align: center;
   top: 95px;
-  width: 180px;
+  width: 400px;
   height: 150px;
   opacity: 1;
 }
