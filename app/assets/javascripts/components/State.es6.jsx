@@ -73,11 +73,13 @@ class State extends React.Component{
           console.log(g.selectAll("path"))
 
 
-              g.selectAll(".feature")
-            .on("click", function(us) {
+        g.selectAll(".feature")
+        .on("click", function(us) {
 
-              this.props.onGetHouseMember(us.properties.CD114FP)
-              this.props.onGetState()
+
+          this.props.onGetHouseMember(us.properties.CD114FP)
+          this.props.onGetState()
+
 
               // tooltip.style('display', 'block');
               // // d3.select(this).classed("active", true).movetoFront();

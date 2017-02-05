@@ -1,23 +1,32 @@
 class RepProf extends React.Component{
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
-    this.state = {show: false, singleRep: [], repBills: []}
+    this.state = {
+      show: false,
+      singleRep: [],
+      repBills: [],
+      // key: this.props.apiKey
+    }
 
     this.handleClick = this.handleClick.bind(this)
     this.getMember = this.getMember.bind(this)
+    this.getMemberBills = this.getMemberBills.bind(this)
+  }
+
+  componentDidMount() {
 
   }
 
-
   getMember(id){
+      // let key = this.state.key
 
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
 
         beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
+        request.setRequestHeader("X-API-Key", "key")
       }
 
       })
@@ -29,13 +38,13 @@ class RepProf extends React.Component{
 
 
   getMemberBills(id){
-
+      // let key = this.state.key
 
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
 
         beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
+        request.setRequestHeader("X-API-Key", "key")
       }
 
       })
@@ -83,9 +92,11 @@ class RepProf extends React.Component{
 
   render(){
     if(this.state.show == true){
+      console.log(this.state.show)
 
       var details = (
           //TODO: make accessing indices more dynamic
+          //TODO: if you want to delete click on show
          this.state.singleRep.map(function(prof){
             return(
               <div>
@@ -108,8 +119,10 @@ class RepProf extends React.Component{
         this.state.repBills.map(function(bill){
             return(
               <p>{bill.title}</p>
+
             )
-         })
+          }
+        )
       )
 
     }
