@@ -18,8 +18,8 @@ class State extends React.Component{
           active = d3.select(null);
 
       var projection = d3.geo.mercator()
-        .scale(5000)
-        .center([-75.94, 41.70])
+        .scale(6550)
+        .center([-75.75, 42.30])
         .translate([ width / 2, height / 2 ] );
 
       var zoom = d3.behavior.zoom()
@@ -35,18 +35,18 @@ class State extends React.Component{
         .attr("width", width)
         .attr("height", height)
 
-
       svg.append("rect")
         .attr("class", "background")
         .attr("width", width)
         .attr("height", height)
-
         .on("click", reset);
-
 
       var tooltip = d3.select(".map-container").append("div")
         .attr("class", "tooltip");
-
+        tooltip.append('h2')
+          .attr("class", "congressional-district")
+        tooltip.append('h3')
+          .attr("class", "congressman")
 
       var g = svg.append("g");
 
@@ -70,17 +70,17 @@ class State extends React.Component{
           .attr("class", "mesh")
           .attr("d", path);
 
-          console.log(g.selectAll("path"))
+        var features = g.selectAll(".feature")
+          .on("mouseover", function(us) {
+            console.log(us.properties.NAMELSAD)
+            tooltip.select(".congressional-district").html(us.properties.NAMELSAD)
+            tooltip.select(".congressman").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
+          })
 
-
-              g.selectAll(".feature")
-            .on("click", function(us) {
-
-              this.props.onGetHouseMember(us.properties.CD114FP)
-              this.props.onGetState()
-
-              // tooltip.style('display', 'block');
-              // // d3.select(this).classed("active", true).movetoFront();
+        g.selectAll(".feature")
+          .on("click", function(us) {
+          this.props.onGetHouseMember(us.properties.CD114FP)
+          this.props.onGetState()
           }.bind(this))
 
       }.bind(this))

@@ -6,11 +6,13 @@ body {
   font-size: 16px;
 }
 
+h1, h2, h3 {
+  font-family: 'Raleway', sans-serif;
+}
+
 h1 {
   font-size: 3em;
   font-variant: small-caps;
-  font-family: 'Raleway', sans-serif;
-  // text-transform: uppercase;
 }
 
 #logo {
@@ -29,7 +31,6 @@ h1 {
 .map-container {
   width: 75%;
   position: relative;
-
 }
 
 .feature {
@@ -61,17 +62,16 @@ svg {
 }
 
 .tooltip {
-  background-color: red;
+  background: #fff;
   box-shadow: 0 0 5px #999999;
   color: #333;
-  // display: none;
   font-size: 12px;
-  // left: 130px;
-  // top: 95px;
+  left: 130px;
   padding: 10px;
   position: absolute;
   text-align: center;
-  width: 80px;
-  height: 100px;
-  z-index: 2;
+  top: 95px;
+  width: 180px;
+  height: 150px;
+  opacity: 1;
 }
