@@ -18,6 +18,17 @@ class RepPage extends React.Component{
 
         <h1>My Rep Info</h1>
 
+        {this.props.houseMembers.map(function(rep, indx){
+          return(
+
+            <RepProf  data={rep} singleRep = {this.props.singleRep} onGetMember={this.props.onGetMember} />
+
+           )
+
+        }.bind(this))}
+
+
+
         {this.props.reps.map(function(rep, indx){
           return(
 
@@ -26,6 +37,7 @@ class RepPage extends React.Component{
            )
 
         }.bind(this))}
+
 
       </section>
     )

@@ -7,7 +7,7 @@ class MapPage extends React.Component{
 
   render(){
     return(
-      <State onGetState = {this.props.onGetState} />
+      <State onGetState = {this.props.onGetState} onGetHouseMember={this.props.onGetHouseMember} />
     )
   }
 }

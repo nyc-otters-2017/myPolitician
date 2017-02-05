@@ -3,28 +3,13 @@ class State extends React.Component{
   constructor(){
     super()
 
-    this.state = {district: "", houseMembers: []}
+    this.state = {}
     this.handleClick = this.handleClick.bind(this)
-    this.getHouseMember = this.getHouseMember.bind(this)
 
 
-  }
-
-  getHouseMember(){
-
-    $.ajax({
-      url:'https://api.propublica.org/congress/v1/members/house/NY/' + this.state.district + '/current.json',
-
-      beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
-      }
-
-    })
-    .then(function(response){
-        this.setState({houseMembers: []})
-    }.bind(this))
 
   }
+
 
    componentDidMount(){
 
@@ -91,8 +76,7 @@ class State extends React.Component{
               g.selectAll(".feature")
             .on("click", function(us) {
 
-              this.setState({district: us.properties.CD114FP})
-              this.getHouseMember()
+              this.props.onGetHouseMember(us.properties.CD114FP)
 
               // tooltip.style('display', 'block');
               // // d3.select(this).classed("active", true).movetoFront();
@@ -139,33 +123,16 @@ class State extends React.Component{
 
 
 
-
-  // getDistrict(){
-
-
-
-  // }
-
   handleClick(e){
     e.preventDefault
     state = e.target.innerHTML
     this.props.onGetState(state)
 
-
-    //TODO: add a prop func that posts gets data and sets the state of rep
-    //info in the app
-    //onGetState
-
   }
 
   render(){
     return(
-        <div>
-          <p>Note: this is a broad demonstration of how the app should function</p>
-          <span><button onClick={this.handleClick}>NY</button></span>
-          <span><button onClick={this.handleClick}>CA</button></span>
-          <span><button  onClick={this.handleClick}>TX</button></span>
-        </div>
+      <h1></h1>
     )
   }
 }
