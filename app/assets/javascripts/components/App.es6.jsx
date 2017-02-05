@@ -10,6 +10,7 @@ class App extends React.Component {
   }
 
 
+
   getState(state){
 
     $.ajax({
@@ -24,16 +25,6 @@ class App extends React.Component {
         this.setState({repInfo : response.results})
     }.bind(this))
   }
-
-
-
-
-
-//Posts representative's policies to the RepInfo comp.
-  // postRepInfo(){
-
-  // }
-
 
 
 
