@@ -20,22 +20,26 @@
 
 $(document).ready(function() {
   var width = 960,
-      height = 900,
+      height = 960,
       active = d3.select(null);
 
-  var projection = d3.geo.albersUsa()
-    .scale(2000)
+  var projection = d3.geo.mercator()
+    .scale(5000)
+    .center([-75.94, 41.70])
+    .translate([ width / 2, height / 2 ] );
 
   var zoom = d3.behavior.zoom()
     .translate([0, 0])
     .scale(1)
-    .scaleExtent ([1 / 2, 10])
+
+    .scaleExtent ([1, 20])
+
     .on("zoom", zoomed);
 
   var path = d3.geo.path()
     .projection(projection);
 
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select(".map-container").append("svg")
     .attr("width", width)
     .attr("height", height)
 

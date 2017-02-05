@@ -7,13 +7,17 @@
 }
 
 .feature {
-  fill: #ccc;
+  fill: #e8e8e8;
   cursor: pointer;
+}
+
+.feature:hover{
+  fill: #bbb;
 }
 
 .mesh {
   fill: none;
-  stroke: #fff;
+  stroke: #bbb;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
