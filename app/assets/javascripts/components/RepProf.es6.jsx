@@ -26,7 +26,7 @@ class RepProf extends React.Component{
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
 
         beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "key")
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
         }
       })
       .then(function(response){
@@ -41,7 +41,7 @@ class RepProf extends React.Component{
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
         beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "key")
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
       }
 
       })

@@ -14,12 +14,12 @@ class State extends React.Component{
   componentDidMount(){
 
       var width = 960,
-          height = 960,
+          height = 720,
           active = d3.select(null);
 
       var projection = d3.geo.mercator()
-        .scale(6550)
-        .center([-75.75, 42.30])
+        .scale(6500)
+        .center([-75.75, 42.80])
         .translate([ width / 2, height / 2 ] );
 
       var zoom = d3.behavior.zoom()
