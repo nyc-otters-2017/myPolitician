@@ -6,15 +6,18 @@ class RepProf extends React.Component{
       show: false,
       singleRepresentative: [],
       repBills: [],
+      timeline: [],
       historicalVotes: []
       // key: this.props.apiKey
     }
     this.handleClick = this.handleClick.bind(this)
     this.getMember = this.getMember.bind(this)
     this.getMemberBills = this.getMemberBills.bind(this)
+    this.getTwitter = this.getTwitter.bind(this)
   }
 
   componentDidMount() {
+
 
   }
 
@@ -46,6 +49,19 @@ class RepProf extends React.Component{
       }.bind(this))
   }
 
+
+
+getTwitter(name){
+  $.ajax({
+    type: 'post',
+    url: 'maps/congress_tweets',
+    data: {twitter_account: { handle: name }}
+  })
+  .done(function(response){
+    this.setState({timeline: response})
+  }.bind(this))
+}
+
   getHistoricalPositions(id) {
 
     $.ajax({
@@ -59,6 +75,7 @@ class RepProf extends React.Component{
       debugger
     }.bind(this))
 
+
   }
 
   handleClick(e) {
@@ -69,14 +86,21 @@ class RepProf extends React.Component{
     name = e.target.innerHTML;
     memberId = this.refs[name].id;
 
+
+    // This function uses twitter handle passed down as a prop
+    //It can be bound to a different event
+    this.getTwitter(this.props.data.twitter_id)
     this.getMember(memberId);
     this.getMemberBills(memberId);
     this.getHistoricalPositions(memberId);
+
   };
 
 
 
+
   render() {
+
     if(this.state.show == true) {
       // Displays Contact Information for Representative
       var details = (
@@ -95,7 +119,9 @@ class RepProf extends React.Component{
       )
 
       var billDetails = (
+
         this.state.repBills.map(function(bill) {
+
             return(
               <div>
                 <p>{bill.title}</p>
@@ -103,6 +129,21 @@ class RepProf extends React.Component{
             )
           })
         )
+
+      var timeline = (
+        this.state.timeline.map(function(tweet){
+          return(
+            <section>
+            <h3>Tweets</h3>
+            <p>{tweet.text}</p>
+            </section>
+          )
+        })
+
+      )
+
+      }
+
 
       var historicalVotesPosition = (
         this.state.historicalVotes.map(function(vote) {
@@ -118,12 +159,16 @@ class RepProf extends React.Component{
 
 
     }
+
     return(
        <div>
           <p id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
           {details}
           {billDetails}
           {historicalVotesPosition}
+
+          {timeline}
+
 
         </div>
       )
