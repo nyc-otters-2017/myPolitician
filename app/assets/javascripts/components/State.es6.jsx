@@ -41,9 +41,11 @@ class State extends React.Component{
       var tooltip = d3.select(".map-container").append("div")
         .attr("class", "tooltip");
         tooltip.append('h3')
-          .attr("class", "congressman-hover")
+          .attr("class", "congressman")
         tooltip.append('h4')
-          .attr("class", "congressional-district-hover")
+          .attr("class", "congressional")
+        tooltip.append('p')
+          .attr("class", "next-election")
 
       var g = svg.append("g");
 
@@ -66,10 +68,10 @@ class State extends React.Component{
 
         var features = g.selectAll(".feature")
           .on("mouseover", function(us) {
-            tooltip.select(".congressman-hover").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
-            tooltip.select(".congressional-district-hover").html(us.properties.NAMELSAD)
+            tooltip.select(".congressman").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
+            tooltip.select(".congressional").html(us.properties.NAMELSAD)
             tooltip.style("opacity", .9)
-          })
+          }.bind(this))
           .on("mousemove", function(us) {
             tooltip.style("left", (d3.event.pageX - 600) + "px")
             tooltip.style("top", (d3.event.pageY - 400) + "px")
@@ -82,7 +84,6 @@ class State extends React.Component{
         .on("click", function(us) {
           this.props.onGetHouseMember(us.properties.CD114FP)
           this.props.onGetState()
-          this.getMemberInfo(us.properties.CD114FP)
           }.bind(this))
 
       }.bind(this))
@@ -126,24 +127,10 @@ class State extends React.Component{
     }
 }
 
-
   handleClick(e) {
     e.preventDefault;
     state = e.target.innerHTML;
     this.props.onGetState(state);
-  }
-
-
-  getMemberInfo(district) {
-      // let key = this.state.key
-      $.ajax({
-        url: "https://api.propublica.org/congress/v1/members/house/NY/" + district + "/current.json",
-        beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
-        }
-      }).then(function(response) {
-        console.log(response)
-      }.bind(this))
   }
 
   render(){
