@@ -27,8 +27,7 @@ class RepProf extends React.Component{
 
         beforeSend: function(request) {
         request.setRequestHeader("X-API-Key", "key")
-      }
-
+        }
       })
       .then(function(response){
         // debugger
@@ -39,16 +38,14 @@ class RepProf extends React.Component{
 
   getMemberBills(id){
       // let key = this.state.key
-
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
-
         beforeSend: function(request) {
         request.setRequestHeader("X-API-Key", "key")
       }
 
       })
-      .then(function(response){
+      .then(function(response) {
 
         this.setState({repBills: response.results[0].bills})
          // debugger
@@ -84,9 +81,8 @@ class RepProf extends React.Component{
 
     this.getMember(memberId)
     this.getMemberBills(memberId)
-    // this.getChamberBills(chamber)
 
-  }
+  };
 
 
 
@@ -95,8 +91,8 @@ class RepProf extends React.Component{
       console.log(this.state.show)
 
       var details = (
-          //TODO: make accessing indices more dynamic
-          //TODO: if you want to delete click on show
+          //todo: make accessing indices more dynamic
+          //todo: if you want to delete click on show
          this.state.singleRep.map(function(prof){
             return(
               <div>
@@ -106,28 +102,19 @@ class RepProf extends React.Component{
                 <span><p>youtube:{prof.youtube_account}</p></span>
                 <p>Bills Sponsored: {prof.roles[0].bills_sponsored}</p>
                 <p>Upcoming Bills</p>
-
               </div>
-
             )
-          }
-        )
+          })
       )
 
-         var billDetails = (
-
+        var billDetails = (
         this.state.repBills.map(function(bill){
             return(
               <p>{bill.title}</p>
-
             )
-          }
+          })
         )
-      )
-
-    }
-
-
+      }
     return(
        <div>
           <p id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
