@@ -6,7 +6,6 @@ class RepProf extends React.Component{
       show: false,
       singleRepresentative: [],
       repBills: [],
-      historicalVotes: []
       // key: this.props.apiKey
     }
     this.handleClick = this.handleClick.bind(this)
@@ -23,10 +22,10 @@ class RepProf extends React.Component{
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
         beforeSend: function(request) {
-          request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
         }
       })
-      .done(function(response) {
+      .then(function(response) {
         this.setState({singleRepresentative: response.results})
       }.bind(this))
   }
@@ -37,29 +36,21 @@ class RepProf extends React.Component{
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
         beforeSend: function(request) {
-          request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
         }
 
       })
-      .done(function(response) {
+      .then(function(response) {
         this.setState({repBills: response.results[0].bills})
       }.bind(this))
   }
 
-  getHistoricalPositions(id) {
-
-    $.ajax({
-      url:'https://api.propublica.org/congress/v1/members/' + id + '/votes.json',
-      beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
-      }
-    })
-    .done(function(response) {
-      this.setState({historicalVotes: response.results[0].votes})
-      debugger
-    }.bind(this))
-
-  }
+  // getMemberHistoricalPositions(id) {
+  //
+  //   $.ajax({
+  //
+  //   })
+  // }
 
   handleClick(e) {
     e.preventDefault();
@@ -71,7 +62,6 @@ class RepProf extends React.Component{
 
     this.getMember(memberId);
     this.getMemberBills(memberId);
-    this.getHistoricalPositions(memberId);
   };
 
 
@@ -104,16 +94,7 @@ class RepProf extends React.Component{
           })
         )
 
-      var historicalVotesPosition = (
-        this.state.historicalVotes.map(function(vote) {
-          return(
-            <div>
-              <h5>{vote.description}</h5>
-              <span><h6>{vote.date}</h6></span><span><h6>{vote.position}</h6></span>
-            </div>
-          )
-        })
-      )
+
 
 
 
@@ -123,7 +104,6 @@ class RepProf extends React.Component{
           <p id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
           {details}
           {billDetails}
-          {historicalVotesPosition}
 
         </div>
       )
