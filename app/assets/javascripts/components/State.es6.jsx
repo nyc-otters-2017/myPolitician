@@ -72,6 +72,7 @@ class State extends React.Component{
 
         var features = g.selectAll(".feature")
           .on("mouseover", function(us) {
+            console.log(us)
             tooltip.select(".congressman").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
             tooltip.select(".congressional-district").html(us.properties.NAMELSAD)
             tooltip.style("opacity", .9)
