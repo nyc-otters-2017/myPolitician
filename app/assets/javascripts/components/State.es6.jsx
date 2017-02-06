@@ -44,11 +44,17 @@ class State extends React.Component{
 
       var tooltip = d3.select(".map-container").append("div")
         .attr("class", "tooltip");
+        tooltip.append('h4')
+          .attr("class", "congressman-hover")
+        tooltip.append('p')
+          .attr("class", "congressional-district-hover")
+
+      var houserepinfo = d3.select(".map-container").append("div")
+        .attr("class", "house-rep-info");
         tooltip.append('h3')
           .attr("class", "congressman")
         tooltip.append('h4')
           .attr("class", "congressional-district")
-
       var g = svg.append("g");
 
       svg
@@ -72,8 +78,8 @@ class State extends React.Component{
 
         var features = g.selectAll(".feature")
           .on("mouseover", function(us) {
-            tooltip.select(".congressman").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
-            tooltip.select(".congressional-district").html(us.properties.NAMELSAD)
+            tooltip.select(".congressman-hover").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
+            tooltip.select(".congressional-district-hover").html(us.properties.NAMELSAD)
             tooltip.style("opacity", .9)
           })
           .on("mousemove", function(us) {
