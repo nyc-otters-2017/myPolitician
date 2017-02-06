@@ -1,15 +1,13 @@
 class RepProf extends React.Component{
 
-  constructor(props){
+  constructor(props) {
     super(props)
-
     this.state = {
       show: false,
-      singleRep: [],
+      singleRepresentative: [],
       repBills: [],
       // key: this.props.apiKey
     }
-
     this.handleClick = this.handleClick.bind(this)
     this.getMember = this.getMember.bind(this)
     this.getMemberBills = this.getMemberBills.bind(this)
@@ -19,100 +17,74 @@ class RepProf extends React.Component{
 
   }
 
-  getMember(id){
+  getMember(id) {
       // let key = this.state.key
-
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
-
         beforeSend: function(request) {
         request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
         }
       })
-      .then(function(response){
-        // debugger
-        this.setState({singleRep: response.results})
-    }.bind(this))
+      .then(function(response) {
+        this.setState({singleRepresentative: response.results})
+      }.bind(this))
   }
 
 
-  getMemberBills(id){
+  getMemberBills(id) {
       // let key = this.state.key
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
         beforeSend: function(request) {
         request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
-      }
+        }
 
       })
       .then(function(response) {
-
         this.setState({repBills: response.results[0].bills})
-         // debugger
-
-    }.bind(this))
+      }.bind(this))
   }
 
-  // getChamberBills(chamber){
+  handleClick(e) {
+    e.preventDefault();
 
+    this.setState({show: !this.state.show});
 
-  //     $.ajax({
-  //       url: 'https://api.propublica.org/congress/v1/115/'+ chamber + '/bills/introduced.json',
+    name = e.target.innerHTML;
+    memberId = this.refs[name].id;
 
-  //       beforeSend: function(request) {
-  //       request.setRequestHeader("X-API-Key", ENV['CONGRESS_API'])
-  //     }
-
-  //     })
-  //     .then(function(response){
-
-  //       this.setState({repBills: response.results[0].bills})
-  //       debugger
-  //   }.bind(this))
-  // }
-
-  handleClick(e){
-    e.preventDefault()
-
-    this.setState({show: !this.state.show})
-
-    name = e.target.innerHTML
-    memberId = this.refs[name].id
-
-    this.getMember(memberId)
-    this.getMemberBills(memberId)
-
+    this.getMember(memberId);
+    this.getMemberBills(memberId);
   };
 
 
 
-  render(){
-    if(this.state.show == true){
+  render() {
+    if(this.state.show == true) {
+      // Displays Contact Information for Representative
       var details = (
-          //todo: make accessing indices more dynamic
-          //todo: if you want to delete click on show
-         this.state.singleRep.map(function(prof){
+         this.state.singleRepresentative.map(function(profile) {
             return(
               <div>
                 <p className="soc-acc">Social Media</p>
-                <span><p>facebook:{prof.facebook_account}</p></span>
-                <span><p>twitter:{prof.twitter_account}</p></span>
-                <span><p>youtube:{prof.youtube_account}</p></span>
-                <p>Bills Sponsored: {prof.roles[0].bills_sponsored}</p>
-                <p>Upcoming Bills</p>
+                <span><p>facebook:{profile.facebook_account}</p></span>
+                <span><p>twitter:{profile.twitter_account}</p></span>
+                <span><p>youtube:{profile.youtube_account}</p></span>
+                <p>Bills Sponsored: {profile.roles[0].bills_sponsored}</p>
               </div>
             )
           })
       )
 
-        var billDetails = (
-        this.state.repBills.map(function(bill){
+      var billDetails = (
+        this.state.repBills.map(function(bill) {
             return(
+              <h3>Upcoming Bills</h3>
               <p>{bill.title}</p>
             )
           })
         )
-      }
+    }
     return(
        <div>
           <p id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>

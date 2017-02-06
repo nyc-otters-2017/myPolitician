@@ -1,12 +1,13 @@
 class State extends React.Component{
-  constructor(){
+
+  constructor() {
     super()
     this.state = {}
     this.handleClick = this.handleClick.bind(this)
   }
 
 
-  componentDidMount(){
+  componentDidMount() {
 
       var width = 960,
           height = 720,
@@ -123,7 +124,7 @@ class State extends React.Component{
 }
 
 
-  handleClick(e){
+  handleClick(e) {
     e.preventDefault;
     state = e.target.innerHTML;
     this.props.onGetState(state);
