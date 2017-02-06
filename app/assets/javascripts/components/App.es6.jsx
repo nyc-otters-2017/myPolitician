@@ -20,7 +20,7 @@ class App extends React.Component {
       url: 'https://api.propublica.org/congress/v1/members/senate/NY/current.json',
 
       beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", key)
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
       }
 
     })
@@ -38,7 +38,7 @@ class App extends React.Component {
 
       beforeSend: function(request) {
 
-        request.setRequestHeader("X-API-Key", key)
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
       }
 
     })
