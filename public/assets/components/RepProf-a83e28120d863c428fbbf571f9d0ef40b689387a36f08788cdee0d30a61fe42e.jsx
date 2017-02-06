@@ -6,18 +6,14 @@ class RepProf extends React.Component{
       show: false,
       singleRepresentative: [],
       repBills: [],
-      timeline: [],
-      historicalVotes: []
       // key: this.props.apiKey
     }
     this.handleClick = this.handleClick.bind(this)
     this.getMember = this.getMember.bind(this)
     this.getMemberBills = this.getMemberBills.bind(this)
-    this.getTwitter = this.getTwitter.bind(this)
   }
 
   componentDidMount() {
-
 
   }
 
@@ -26,10 +22,10 @@ class RepProf extends React.Component{
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
         beforeSend: function(request) {
-          request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
         }
       })
-      .done(function(response) {
+      .then(function(response) {
         this.setState({singleRepresentative: response.results})
       }.bind(this))
   }
@@ -40,43 +36,21 @@ class RepProf extends React.Component{
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
         beforeSend: function(request) {
-          request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
         }
 
       })
-      .done(function(response) {
+      .then(function(response) {
         this.setState({repBills: response.results[0].bills})
       }.bind(this))
   }
 
-
-
-getTwitter(name){
-  $.ajax({
-    type: 'post',
-    url: 'maps/congress_tweets',
-    data: {twitter_account: { handle: name }}
-  })
-  .done(function(response){
-    this.setState({timeline: response})
-  }.bind(this))
-}
-
-  getHistoricalPositions(id) {
-
-    $.ajax({
-      url:'https://api.propublica.org/congress/v1/members/' + id + '/votes.json',
-      beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
-      }
-    })
-    .done(function(response) {
-      this.setState({historicalVotes: response.results[0].votes})
-      debugger
-    }.bind(this))
-
-
-  }
+  // getMemberHistoricalPositions(id) {
+  //
+  //   $.ajax({
+  //
+  //   })
+  // }
 
   handleClick(e) {
     e.preventDefault();
@@ -86,21 +60,13 @@ getTwitter(name){
     name = e.target.innerHTML;
     memberId = this.refs[name].id;
 
-
-    // This function uses twitter handle passed down as a prop
-    //It can be bound to a different event
-    this.getTwitter(this.props.data.twitter_id)
     this.getMember(memberId);
     this.getMemberBills(memberId);
-    this.getHistoricalPositions(memberId);
-
   };
 
 
 
-
   render() {
-
     if(this.state.show == true) {
       // Displays Contact Information for Representative
       var details = (
@@ -119,9 +85,7 @@ getTwitter(name){
       )
 
       var billDetails = (
-
         this.state.repBills.map(function(bill) {
-
             return(
               <div>
                 <p>{bill.title}</p>
@@ -130,45 +94,16 @@ getTwitter(name){
           })
         )
 
-      var timeline = (
-        this.state.timeline.map(function(tweet){
-          return(
-            <section>
-            <h3>Tweets</h3>
-            <p>{tweet.text}</p>
-            </section>
-          )
-        })
 
-      )
-
-      }
-
-
-      var historicalVotesPosition = (
-        this.state.historicalVotes.map(function(vote) {
-          return(
-            <div>
-              <h5>{vote.description}</h5>
-              <span><h6>{vote.date}</h6></span><span><h6>{vote.position}</h6></span>
-            </div>
-          )
-        })
-      )
 
 
 
     }
-
     return(
        <div>
           <p id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
           {details}
           {billDetails}
-          {historicalVotesPosition}
-
-          {timeline}
-
 
         </div>
       )
