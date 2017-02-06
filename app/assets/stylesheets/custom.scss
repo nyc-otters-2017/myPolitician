@@ -61,8 +61,6 @@ header h1{
 
 .feature {
   fill: #e8e8e8;
-  stroke: #000;
-  stroke-width: .1;
   cursor: pointer;
 }
 
@@ -82,7 +80,7 @@ svg {
 
 .mesh {
   fill: none;
-  // stroke: #bbb;
+  stroke: #bbb;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
