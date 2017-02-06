@@ -68,7 +68,6 @@ header h1{
   fill: #bbb;
 }
 
-
 .feature.active{
   fill:blue;
   }
@@ -89,14 +88,9 @@ svg {
   background: #fff;
   box-shadow: 0 0 5px #999999;
   color: #333;
-  padding: 10px;
+  // padding-top: 3px;
   position: absolute;
   text-align: center;
   width: 250px;
-  height: 75px;
-}
-
-.congressional-district-hover {
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.3em;
+  height: 100px;
 }
