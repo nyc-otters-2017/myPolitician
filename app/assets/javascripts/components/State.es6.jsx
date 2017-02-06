@@ -34,6 +34,7 @@ class State extends React.Component{
       var svg = d3.select(".map-container").append("svg")
         .attr("width", width)
         .attr("height", height)
+        .on("click", stopped, true);
 
       svg.append("rect")
         .attr("class", "background")
@@ -56,8 +57,6 @@ class State extends React.Component{
 
       d3.json("NYS_Congressional_Districts.json", function(error, us) {
         if (error) throw error;
-          console.log(us)
-          console.log(us)
         g.selectAll("path")
           .data(topojson.feature(us, us.objects.districts).features)
           .enter().append("path")
@@ -73,7 +72,6 @@ class State extends React.Component{
 
         var features = g.selectAll(".feature")
           .on("mouseover", function(us) {
-            console.log(us.properties.NAMELSAD)
             tooltip.select(".congressman").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
             tooltip.select(".congressional-district").html(us.properties.NAMELSAD)
             tooltip.style("opacity", .9)
@@ -127,12 +125,14 @@ class State extends React.Component{
           .call(zoom.translate([0, 0]).scale(1).event);
     }
 
+    function zoomed() {
+      g.style("stroke-width", 1.5 / d3.event.scale + "px");
+      g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")")
+    }
 
-      function zoomed() {
-        g.style("stroke-width", 1.5 / d3.event.scale + "px");
-        g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")")
-      }
-
+    function stopped() {
+      if (d3.event.defaultPrevented) d3.event.stopPropagation();
+    }
 }
 
 
