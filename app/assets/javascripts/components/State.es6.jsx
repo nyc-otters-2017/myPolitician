@@ -43,10 +43,10 @@ class State extends React.Component{
 
       var tooltip = d3.select(".map-container").append("div")
         .attr("class", "tooltip");
-        tooltip.append('h2')
-          .attr("class", "congressional-district")
         tooltip.append('h3')
           .attr("class", "congressman")
+        tooltip.append('h4')
+          .attr("class", "congressional-district")
 
       var g = svg.append("g");
 
@@ -74,16 +74,16 @@ class State extends React.Component{
         var features = g.selectAll(".feature")
           .on("mouseover", function(us) {
             console.log(us.properties.NAMELSAD)
-            tooltip.select(".congressional-district").html(us.properties.NAMELSAD)
             tooltip.select(".congressman").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
-            tooltip.style("opacity", 1)
+            tooltip.select(".congressional-district").html(us.properties.NAMELSAD)
+            tooltip.style("opacity", .9)
             .style("left", (d3.event.pageX / 2) + "px")
             .style("top", (d3.event.pageY / 2) + "px");
           })
           .on("mouseout", function(us) {
             tooltip.style("opacity", 0);
           })
-          
+
         g.selectAll(".feature")
         .on("click", function(us) {
 

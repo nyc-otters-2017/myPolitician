@@ -6,7 +6,7 @@ body {
   font-size: 16px;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: 'Raleway', sans-serif;
   text-rendering: optimizeLegibility;
 }
@@ -83,12 +83,9 @@ svg {
   box-shadow: 0 0 5px #999999;
   color: #333;
   font-size: 12px;
-  // left: 130px;
   padding: 10px;
   position: absolute;
   text-align: center;
-  // top: 95px;
-  width: 400px;
-  height: 150px;
-  // opacity: 1;
+  width: 275px;
+  height: 115px;
 }
