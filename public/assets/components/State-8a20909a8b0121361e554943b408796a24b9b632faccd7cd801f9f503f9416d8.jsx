@@ -1,21 +1,25 @@
 class State extends React.Component{
 
-  constructor() {
+  constructor(){
     super()
+
     this.state = {}
     this.handleClick = this.handleClick.bind(this)
+
+
+
   }
 
 
-  componentDidMount() {
+  componentDidMount(){
 
       var width = 960,
-          height = 720,
+          height = 960,
           active = d3.select(null);
 
       var projection = d3.geo.mercator()
-        .scale(6500)
-        .center([-75.75, 42.80])
+        .scale(6550)
+        .center([-75.75, 42.30])
         .translate([ width / 2, height / 2 ] );
 
       var zoom = d3.behavior.zoom()
@@ -30,7 +34,6 @@ class State extends React.Component{
       var svg = d3.select(".map-container").append("svg")
         .attr("width", width)
         .attr("height", height)
-        .on("click", stopped, true);
 
       svg.append("rect")
         .attr("class", "background")
@@ -40,17 +43,11 @@ class State extends React.Component{
 
       var tooltip = d3.select(".map-container").append("div")
         .attr("class", "tooltip");
-        tooltip.append('h4')
-          .attr("class", "congressman-hover")
-        tooltip.append('p')
-          .attr("class", "congressional-district-hover")
-
-      var houserepinfo = d3.select(".map-container").append("div")
-        .attr("class", "house-rep-info");
+        tooltip.append('h2')
+          .attr("class", "congressional-district")
         tooltip.append('h3')
           .attr("class", "congressman")
-        tooltip.append('h4')
-          .attr("class", "congressional-district")
+
       var g = svg.append("g");
 
       svg
@@ -59,36 +56,45 @@ class State extends React.Component{
 
       d3.json("NYS_Congressional_Districts.json", function(error, us) {
         if (error) throw error;
+          console.log(us)
+          console.log(us)
         g.selectAll("path")
           .data(topojson.feature(us, us.objects.districts).features)
           .enter().append("path")
             .attr("d", path)
             .attr("class", "feature")
             .on("click", clicked);
+
         g.append("path")
           .datum(topojson.mesh(us, us.objects.districts, function(a, b) {return a != b; }))
           .attr("class", "mesh")
           .attr("d", path);
 
+
         var features = g.selectAll(".feature")
           .on("mouseover", function(us) {
-
-            tooltip.select(".congressman-hover").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
-            tooltip.select(".congressional-district-hover").html(us.properties.NAMELSAD)
-
-            tooltip.style("opacity", .9)
-          })
-          .on("mousemove", function(us) {
-            tooltip.style("left", (d3.event.pageX - 600) + "px")
-            tooltip.style("top", (d3.event.pageY - 400) + "px")
+            console.log(us.properties.NAMELSAD)
+            tooltip.select(".congressional-district").html(us.properties.NAMELSAD)
+            tooltip.select(".congressman").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
+            tooltip.style("opacity", 1)
+            .style("left", (d3.event.pageX / 2) + "px")
+            .style("top", (d3.event.pageY / 2) + "px");
           })
           .on("mouseout", function(us) {
             tooltip.style("opacity", 0);
           })
+          
         g.selectAll(".feature")
         .on("click", function(us) {
+
+
           this.props.onGetHouseMember(us.properties.CD114FP)
           this.props.onGetState()
+
+
+              // tooltip.style('display', 'block');
+              // // d3.select(this).classed("active", true).movetoFront();
+
           }.bind(this))
 
       }.bind(this))
@@ -121,22 +127,20 @@ class State extends React.Component{
           .call(zoom.translate([0, 0]).scale(1).event);
     }
 
-    function zoomed() {
-      g.style("stroke-width", 1.5 / d3.event.scale + "px");
-      g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")")
-    }
 
-    function stopped() {
-      if (d3.event.defaultPrevented)
-        d3.event.stopPropagation();
-    }
+      function zoomed() {
+        g.style("stroke-width", 1.5 / d3.event.scale + "px");
+        g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")")
+      }
+
 }
 
 
-  handleClick(e) {
-    e.preventDefault;
-    state = e.target.innerHTML;
-    this.props.onGetState(state);
+
+  handleClick(e){
+    e.preventDefault
+    state = e.target.innerHTML
+    this.props.onGetState(state)
   }
 
   render(){
@@ -144,5 +148,4 @@ class State extends React.Component{
       <h1></h1>
     )
   }
-
 }
