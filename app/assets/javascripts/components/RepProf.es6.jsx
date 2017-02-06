@@ -22,7 +22,7 @@ class RepProf extends React.Component{
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
         beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
         }
       })
       .then(function(response) {
@@ -36,7 +36,7 @@ class RepProf extends React.Component{
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
         beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
         }
 
       })
@@ -44,6 +44,13 @@ class RepProf extends React.Component{
         this.setState({repBills: response.results[0].bills})
       }.bind(this))
   }
+
+  // getMemberHistoricalPositions(id) {
+  //
+  //   $.ajax({
+  //
+  //   })
+  // }
 
   handleClick(e) {
     e.preventDefault();
@@ -71,7 +78,7 @@ class RepProf extends React.Component{
                 <span><p>twitter:{profile.twitter_account}</p></span>
                 <span><p>youtube:{profile.youtube_account}</p></span>
                 <p>Bills Sponsored: {profile.roles[0].bills_sponsored}</p>
-                <h3>Upcoming Bills</h3>
+                <h3 className="tab">Upcoming Bills</h3>
               </div>
             )
           })
@@ -86,6 +93,11 @@ class RepProf extends React.Component{
             )
           })
         )
+
+
+
+
+
     }
     return(
        <div>

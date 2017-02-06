@@ -85,6 +85,7 @@ class State extends React.Component{
           .on("mouseout", function(us) {
             tooltip.style("opacity", 0);
           })
+        // This is the event that triggers the DOM render
         g.selectAll(".feature")
         .on("click", function(us) {
           this.props.onGetHouseMember(us.properties.CD114FP)
