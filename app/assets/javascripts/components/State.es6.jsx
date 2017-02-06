@@ -11,7 +11,7 @@ class State extends React.Component{
   }
 
 
-   componentDidMount(){
+  componentDidMount(){
 
       var width = 960,
           height = 960,
@@ -83,15 +83,7 @@ class State extends React.Component{
           .on("mouseout", function(us) {
             tooltip.style("opacity", 0);
           })
-
-        g.selectAll(".feature")
-          .on("click", function(us) {
-          this.props.onGetHouseMember(us.properties.CD114FP)
-          this.props.onGetState()
-
-          console.log(g.selectAll("path"))
-
-
+          
         g.selectAll(".feature")
         .on("click", function(us) {
 
@@ -108,22 +100,21 @@ class State extends React.Component{
       }.bind(this))
 
       function clicked(d) {
-        console.log(d)
-      if (active.node() === this) return reset();
-      active.classed("active", false);
-      active = d3.select(this).classed("active", true);
+        if (active.node() === this) return reset();
+        active.classed("active", false);
+        active = d3.select(this).classed("active", true);
 
-      var bounds = path.bounds(d),
-          dx = bounds[1][0] - bounds[0][0],
-          dy = bounds[1][1] - bounds[0][1],
-          x = (bounds[0][0] + bounds[1][0]) / 2,
-          y = (bounds[0][1] + bounds[1][1]) / 2,
-          scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height))),
-          translate = [width / 2 - scale * x, height / 2 - scale * y];
+        var bounds = path.bounds(d),
+            dx = bounds[1][0] - bounds[0][0],
+            dy = bounds[1][1] - bounds[0][1],
+            x = (bounds[0][0] + bounds[1][0]) / 2,
+            y = (bounds[0][1] + bounds[1][1]) / 2,
+            scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height))),
+            translate = [width / 2 - scale * x, height / 2 - scale * y];
 
-      svg.transition()
-          .duration(750)
-          .call(zoom.translate(translate).scale(scale).event);
+        svg.transition()
+            .duration(750)
+            .call(zoom.translate(translate).scale(scale).event);
     }
 
 
@@ -150,7 +141,6 @@ class State extends React.Component{
     e.preventDefault
     state = e.target.innerHTML
     this.props.onGetState(state)
-
   }
 
   render(){
