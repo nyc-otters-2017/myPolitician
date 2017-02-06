@@ -1,18 +1,10 @@
 <div class="row">
-  <div class="col-sm-4 col-md-4 text-container">
-    <h1>New York State</h1>
-    <article>
-      <p> Upcoming Votes </p>
-      <p> Historical Vote positions </p>
+  <div class="col-sm-4 col-md-4 col-lg-4 text-container">
+    <article class="state-info">
+      <%= react_component 'App', {CONGRESS_API: ENV['CONGRESS_API']} %>
     </article>
 
   </div>
-  <div class="col-sm-8 col-md-8 map-container">
+  <div class="col-sm-8 col-md-8 col-lg-8 map-container">
   </div>
 </div>
-<div class="row">
-  <div class="col-sm-12 col-md-12 test">
-  </div>
-</div>
-<%= react_component 'App', {CONGRESS_API: ENV['CONGRESS_API']} %>
-<%= ENV['CONGRESS_API'] %>
