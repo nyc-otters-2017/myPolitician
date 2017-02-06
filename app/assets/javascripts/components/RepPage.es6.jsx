@@ -1,14 +1,10 @@
 class RepPage extends React.Component{
-
-  constructor(){
-    super()
-
-
-
+  constructor(props){
+    super(props)
   }
 
-
-
+componentDidMount() {
+}
 
   render(){
 
@@ -32,7 +28,7 @@ class RepPage extends React.Component{
         {this.props.reps.map(function(rep, indx){
           return(
 
-            <RepProf  data={rep} singleRep = {this.props.singleRep} onGetMember={this.props.onGetMember} />
+            <RepProf  data={rep} singleRep = {this.props.singleRep} onGetMember={this.props.onGetMember} apiKey={this.props.apiKey} />
 
            )
 
@@ -43,4 +39,3 @@ class RepPage extends React.Component{
     )
   }
 }
-

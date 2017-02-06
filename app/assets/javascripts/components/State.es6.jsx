@@ -70,6 +70,7 @@ class State extends React.Component{
           .attr("class", "mesh")
           .attr("d", path);
 
+
         var features = g.selectAll(".feature")
           .on("mouseover", function(us) {
             console.log(us.properties.NAMELSAD)
@@ -87,6 +88,21 @@ class State extends React.Component{
           .on("click", function(us) {
           this.props.onGetHouseMember(us.properties.CD114FP)
           this.props.onGetState()
+
+          console.log(g.selectAll("path"))
+
+
+        g.selectAll(".feature")
+        .on("click", function(us) {
+
+
+          this.props.onGetHouseMember(us.properties.CD114FP)
+          this.props.onGetState()
+
+
+              // tooltip.style('display', 'block');
+              // // d3.select(this).classed("active", true).movetoFront();
+
           }.bind(this))
 
       }.bind(this))
