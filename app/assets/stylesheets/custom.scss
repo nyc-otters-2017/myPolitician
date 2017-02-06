@@ -61,8 +61,6 @@ header h1{
 
 .feature {
   fill: #e8e8e8;
-  stroke: #000;
-  stroke-width: .1;
   cursor: pointer;
 }
 
@@ -82,7 +80,7 @@ svg {
 
 .mesh {
   fill: none;
-  // stroke: #bbb;
+  stroke: #bbb;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -91,10 +89,14 @@ svg {
   background: #fff;
   box-shadow: 0 0 5px #999999;
   color: #333;
-  font-size: 12px;
   padding: 10px;
   position: absolute;
   text-align: center;
-  width: 275px;
-  height: 115px;
+  width: 250px;
+  height: 75px;
+}
+
+.congressional-district-hover {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.3em;
 }
