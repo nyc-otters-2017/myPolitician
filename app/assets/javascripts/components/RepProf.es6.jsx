@@ -88,8 +88,6 @@ class RepProf extends React.Component{
 
   render(){
     if(this.state.show == true){
-      console.log(this.state.show)
-
       var details = (
           //todo: make accessing indices more dynamic
           //todo: if you want to delete click on show

@@ -15,14 +15,11 @@ class App extends React.Component {
   // TODO: Make more dynamic
   getState(state){
     let key = this.state.key
-
     $.ajax({
       url: 'https://api.propublica.org/congress/v1/members/senate/NY/current.json',
-
       beforeSend: function(request) {
         request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc")
       }
-
     })
     .then(function(response){
         this.setState({repInfo : response.results})
