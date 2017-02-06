@@ -16,9 +16,24 @@ h1 {
   font-variant: small-caps;
 }
 
+header {
+    height: 150px;
+}
+
+header h1{
+  display: inline-block;
+}
+
 #logo {
+  margin-left: 50px;
   font-weight: 900;
   font-size: 4em;
+}
+
+#state-header {
+  margin-right: 50px;
+  margin-top: 34px;
+  float: right;
 }
 
 .background {
