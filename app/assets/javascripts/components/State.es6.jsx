@@ -1,17 +1,13 @@
 class State extends React.Component{
 
-  constructor(){
+  constructor() {
     super()
-
     this.state = {}
     this.handleClick = this.handleClick.bind(this)
-
-
-
   }
 
 
-  componentDidMount(){
+  componentDidMount() {
 
       var width = 960,
           height = 720,
@@ -63,16 +59,14 @@ class State extends React.Component{
             .attr("d", path)
             .attr("class", "feature")
             .on("click", clicked);
-
         g.append("path")
           .datum(topojson.mesh(us, us.objects.districts, function(a, b) {return a != b; }))
           .attr("class", "mesh")
           .attr("d", path);
 
-
         var features = g.selectAll(".feature")
           .on("mouseover", function(us) {
-            console.log(us)
+            // console.log(us)
             tooltip.select(".congressman").html(us.properties.CD_Name + " (" + us.properties.Party + ")")
             tooltip.select(".congressional-district").html(us.properties.NAMELSAD)
             tooltip.style("opacity", .9)
@@ -82,18 +76,10 @@ class State extends React.Component{
           .on("mouseout", function(us) {
             tooltip.style("opacity", 0);
           })
-
         g.selectAll(".feature")
         .on("click", function(us) {
-
-
           this.props.onGetHouseMember(us.properties.CD114FP)
           this.props.onGetState()
-
-
-              // tooltip.style('display', 'block');
-              // // d3.select(this).classed("active", true).movetoFront();
-
           }.bind(this))
 
       }.bind(this))
@@ -132,16 +118,16 @@ class State extends React.Component{
     }
 
     function stopped() {
-      if (d3.event.defaultPrevented) d3.event.stopPropagation();
+      if (d3.event.defaultPrevented)
+        d3.event.stopPropagation();
     }
 }
 
 
-
-  handleClick(e){
-    e.preventDefault
-    state = e.target.innerHTML
-    this.props.onGetState(state)
+  handleClick(e) {
+    e.preventDefault;
+    state = e.target.innerHTML;
+    this.props.onGetState(state);
   }
 
   render(){
@@ -149,4 +135,5 @@ class State extends React.Component{
       <h1></h1>
     )
   }
+
 }
