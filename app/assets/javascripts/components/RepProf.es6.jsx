@@ -66,11 +66,12 @@ class RepProf extends React.Component{
          this.state.singleRepresentative.map(function(profile) {
             return(
               <div>
-                <p className="soc-acc">Social Media</p>
+                <h3 className="soc-acc">Social Media </h3>
                 <span><p>facebook:{profile.facebook_account}</p></span>
                 <span><p>twitter:{profile.twitter_account}</p></span>
                 <span><p>youtube:{profile.youtube_account}</p></span>
                 <p>Bills Sponsored: {profile.roles[0].bills_sponsored}</p>
+                <h3>Upcoming Bills</h3>
               </div>
             )
           })
@@ -80,7 +81,6 @@ class RepProf extends React.Component{
         this.state.repBills.map(function(bill) {
             return(
               <div>
-                <h3>Upcoming Bills</h3>
                 <p>{bill.title}</p>
               </div>
             )
