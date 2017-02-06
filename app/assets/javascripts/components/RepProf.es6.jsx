@@ -116,12 +116,12 @@ class RepProf extends React.Component{
         )
       }
     return(
-       <div>
+      <div>
           <p id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
           {details}
           {billDetails}
 
-        </div>
+      </div>
       )
   }
 }
