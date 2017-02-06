@@ -7,21 +7,22 @@ class RepProf extends React.Component{
       show: false,
       singleRep: [],
       repBills: [],
-      // key: this.props.apiKey
+      timeline: []
     }
 
     this.handleClick = this.handleClick.bind(this)
     this.getMember = this.getMember.bind(this)
     this.getMemberBills = this.getMemberBills.bind(this)
+    this.getTwitter = this.getTwitter.bind(this)
   }
 
   componentDidMount() {
+
 
   }
 
   getMember(id){
       // let key = this.state.key
-
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
 
@@ -53,23 +54,17 @@ class RepProf extends React.Component{
     }.bind(this))
   }
 
-  // getChamberBills(chamber){
 
-
-  //     $.ajax({
-  //       url: 'https://api.propublica.org/congress/v1/115/'+ chamber + '/bills/introduced.json',
-
-  //       beforeSend: function(request) {
-  //       request.setRequestHeader("X-API-Key", ENV['CONGRESS_API'])
-  //     }
-
-  //     })
-  //     .then(function(response){
-
-  //       this.setState({repBills: response.results[0].bills})
-  //       debugger
-  //   }.bind(this))
-  // }
+getTwitter(name){
+  $.ajax({
+    type: 'post',
+    url: 'maps/congress_tweets',
+    data: {twitter_account: { handle: name }}
+  })
+  .done(function(response){
+    this.setState({timeline: response})
+  }.bind(this))
+}
 
   handleClick(e){
     e.preventDefault()
@@ -82,6 +77,11 @@ class RepProf extends React.Component{
     this.getMember(memberId)
     this.getMemberBills(memberId)
 
+    // This function uses twitter handle passed down as a prop
+    //It can be bound to a different event
+    this.getTwitter(this.props.data.twitter_id)
+
+
   };
 
 
@@ -89,6 +89,7 @@ class RepProf extends React.Component{
   render(){
     if(this.state.show == true){
       console.log(this.state.show)
+
 
       var details = (
           //todo: make accessing indices more dynamic
@@ -107,19 +108,34 @@ class RepProf extends React.Component{
           })
       )
 
-        var billDetails = (
+      var billDetails = (
         this.state.repBills.map(function(bill){
             return(
               <p>{bill.title}</p>
             )
           })
         )
+      var timeline = (
+        this.state.timeline.map(function(tweet){
+          return(
+            <section>
+            <h3>Tweets</h3>
+            <p>{tweet.text}</p>
+            </section>
+          )
+        })
+
+      )
+
       }
     return(
        <div>
           <p id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
           {details}
           {billDetails}
+
+          {timeline}
+
 
         </div>
       )

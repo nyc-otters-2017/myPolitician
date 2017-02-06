@@ -11,8 +11,12 @@ class App extends React.Component {
     this.getHouseMember = this.getHouseMember.bind(this)
   }
 
+  componentDidMount(){
+    
+  }
 
-  // TODO: Make more dynamic
+
+  // TODO: Make more dynamicc
   getState(state){
     let key = this.state.key
 
@@ -49,6 +53,7 @@ class App extends React.Component {
     }.bind(this))
 
   }
+
 
 
   render(){
