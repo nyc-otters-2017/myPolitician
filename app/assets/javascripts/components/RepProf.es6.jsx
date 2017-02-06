@@ -79,8 +79,10 @@ class RepProf extends React.Component{
       var billDetails = (
         this.state.repBills.map(function(bill) {
             return(
-              <h3>Upcoming Bills</h3>
-              <p>{bill.title}</p>
+              <div>
+                <h3>Upcoming Bills</h3>
+                <p>{bill.title}</p>
+              </div>
             )
           })
         )
