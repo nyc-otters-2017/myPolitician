@@ -41,6 +41,10 @@ header h1{
   pointer-events: all;
 }
 
+.text-container {
+  height: 960px;
+  overflow: auto;
+}
 .state-info {
   margin-left: 50px;
 }
