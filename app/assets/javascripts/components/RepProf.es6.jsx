@@ -113,7 +113,12 @@ getTwitter(name){
                 <span><p>twitter:{profile.twitter_account}</p></span>
                 <span><p>youtube:{profile.youtube_account}</p></span>
                 <p>Bills Sponsored: {profile.roles[0].bills_sponsored}</p>
-                <h3 className="tab">Upcoming Bills</h3>
+
+                <ul class="tabs">
+                  <li> <h3 className="tab">Upcoming Bills</h3> </li>
+                  <li> <h3 className="tab">Vote History</h3> </li>
+                  <li> <h3 className="tab">Tweets</h3> </li>
+                </ul>
               </div>
             )
           })
