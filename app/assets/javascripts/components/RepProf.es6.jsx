@@ -158,7 +158,7 @@ getTwitter(name){
 
 
 
-    }
+
 
     return(
        <div>
@@ -166,7 +166,6 @@ getTwitter(name){
           {details}
           {billDetails}
           {historicalVotesPosition}
-
           {timeline}
 
 
