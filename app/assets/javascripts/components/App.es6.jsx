@@ -6,7 +6,8 @@ class App extends React.Component {
     this.state = {
       // key: this.props.CONGRESS_API,
       stateMembers: [],
-      houseMembers: []}
+      houseMembers: [],
+      singleRepresentative: []}
     this.getStateMembers = this.getStateMembers.bind(this)
     this.getHouseMember = this.getHouseMember.bind(this)
     this.getMember = this.getMember.bind(this)
@@ -57,6 +58,7 @@ class App extends React.Component {
       })
       .done(function(response) {
         this.setState({singleRepresentative: response.results})
+        
       }.bind(this))
   }
 
@@ -75,7 +77,7 @@ class App extends React.Component {
         />
         <RepPage
           stateMembers={this.state.stateMembers}
-          singleRep={this.state.singleRep}
+          singleRepresentative={this.state.singleRepresentative}
           onGetMember={this.getMember}
           houseMembers={this.state.houseMembers}
           apiKey={this.state.key}

@@ -82,7 +82,6 @@ class State extends React.Component{
 
         g.selectAll(".feature")
         .on("click", function(ny) {
-          debugger
           this.props.onGetHouseMember(ny.properties.CD114FP)
           this.props.onGetStateMembers()
           // Need to update ny info with member id

@@ -4,7 +4,6 @@ class RepProf extends React.Component{
     super(props)
     this.state = {
       show: false,
-      singleRepresentative: [],
       repBills: [],
       timeline: [],
       historicalVotes: []
@@ -91,7 +90,7 @@ getTwitter(name){
     this.props.onGetMember(memberId);
     this.getMemberBills(memberId);
     this.getHistoricalPositions(memberId);
-
+    
   };
 
 
@@ -102,7 +101,7 @@ getTwitter(name){
     if(this.state.show == true) {
       // Displays Contact Information for Representative
       var details = (
-         this.state.singleRepresentative.map(function(profile) {
+         this.props.singleRepresentative.map(function(profile) {
             return(
               <div>
                 <h3 className="soc-acc">Social Media </h3>

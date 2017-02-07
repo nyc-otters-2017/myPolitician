@@ -13,7 +13,7 @@ componentDidMount() {
           return(
             <RepProf
               data={rep}
-              singleRep = {this.props.singleRep}
+              singleRepresentative = {this.props.singleRepresentative}
               onGetMember={this.props.onGetMember}
               // apiKey={this.props.apiKey}
               />
@@ -24,7 +24,7 @@ componentDidMount() {
           return(
             <RepProf
               data={rep}
-              singleRep = {this.props.singleRep}
+              singleRepresentative = {this.props.singleRepresentative}
               onGetMember={this.props.onGetMember} />
           )
         }.bind(this))}
