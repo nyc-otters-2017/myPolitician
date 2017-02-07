@@ -109,9 +109,10 @@ getTwitter(name){
             return(
               <div>
                 <h3 className="soc-acc">Social Media </h3>
-                <i className="fa fa-facebook-official social-icon" aria-hidden="true"></i>
-                <i className="fa fa-twitter social-icon" aria-hidden="true"></i>
-                <i className="fa fa-youtube social-icon" aria-hidden="true"></i>
+                  <a href={"http://www.facebook.com/" + profile.facebook_account}><i className="fa fa-facebook-official social-icon" aria-hidden="true"></i></a>
+                  <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
+                  <a href={"http://www.youtube.com/" + profile.youtube_account}><i className="fa fa-youtube social-icon" aria-hidden="true"></i></a>
+
                 <span><p>facebook:{profile.facebook_account}</p></span>
                 <span><p>twitter:{profile.twitter_account}</p></span>
                 <span><p>youtube:{profile.youtube_account}</p></span>
