@@ -170,7 +170,9 @@ getTwitter(name){
             <div className="tab-content">
               {historicalVotesPosition}
             </div>
-            {timeline}
+            <div className="tab-content"> 
+              {timeline}
+            </div>
           </div>
         </div>
       )
