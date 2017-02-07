@@ -7,10 +7,41 @@ class RepProf extends React.Component{
       // key: this.props.apiKey
     }
     this.handleClick = this.handleClick.bind(this)
+    this.renderTabs = this.renderTabs.bind(this)
+  }
+
+
+  componentDidMount() {
+    this.renderTabs();
   }
 
   componentDidUpdate() {
+    this.renderTabs();
   }
+
+  renderTabs() {
+    $('.tabs li:nth-child(1)').click(function(event){
+      $(this).addClass("active");
+      $('.tabs li:nth-child(2)').removeClass("active");
+      $('.tabs li:nth-child(3)').removeClass("active");
+      $('.tab-content:visible').hide();
+      $('.upcoming:hidden').show();
+    });
+    $('.tabs li:nth-child(2)').click(function(event){
+      $(this).addClass("active");
+      $('.tabs li:nth-child(1)').removeClass("active");
+      $('.tabs li:nth-child(3)').removeClass("active");
+      $('.tab-content:visible').hide();
+      $('.history:hidden').show();
+    });
+    $('.tabs li:nth-child(3)').click(function(event){
+      $(this).addClass("active");
+      $('.tabs li:nth-child(1)').removeClass("active");
+      $('.tabs li:nth-child(2)').removeClass("active");
+      $('.tab-content:visible').hide();
+      $('.tweets:hidden').show();
+    });
+  };
 
 
   handleClick(e) {
@@ -43,12 +74,11 @@ class RepProf extends React.Component{
                 <h3 className="soc-acc">Social Media </h3>
                   <a href={"http://www.facebook.com/" + profile.facebook_account}><i className="fa fa-facebook-official social-icon" aria-hidden="true"></i></a>
                   <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
-                  <a href={"http://www.youtube.com/" + profile.youtube_account}><i className="fa fa-youtube social-icon" aria-hidden="true"></i></a>
 
                 <ul className="tabs">
-                  <li className="active"><a href="#whole_self"><h3>Upcoming Bills</h3></a></li>
-                  <li ><a href="#kindness"><h3>Vote History</h3></a></li>
-                  <li><a href="#whole_self"><h3>Tweets</h3></a></li>
+                  <li className="active"><a href="#upcoming"><h3>Upcoming Bills</h3></a></li>
+                  <li ><a href="#history"><h3>Vote History</h3></a></li>
+                  <li><a href="#tweets"><h3>Tweets</h3></a></li>
                 </ul>
               </div>
             )
@@ -59,7 +89,9 @@ class RepProf extends React.Component{
 
         this.props.repBills.map(function(bill) {
             return(
-              <p className="upcoming-bills">{bill.title}</p>
+              <div className="bills" >
+                <p>{bill.title}</p>
+              </div>
             )
           })
         )
@@ -81,9 +113,11 @@ class RepProf extends React.Component{
       var historicalVotesPosition = (
           this.props.historicalVotes.map(function(vote) {
             return(
-               <div>
-                  <p>{vote.description}</p>
-                  <span><p>{vote.date}</p></span><span><p>{vote.position}</p></span>
+                <div className="bills">
+                  <p>{vote.description}
+                    <span className="vote-date">{vote.date}</span>
+                  </p>
+                  <p className="vote-position">{vote.position}</p>
                 </div>
               )
             })
@@ -93,17 +127,18 @@ class RepProf extends React.Component{
     return(
        <div>
             <p className= "rep-name" id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
-            {details}
-            <div className="tab-content">
-            {billDetails}
+              {details}
+            <div className="tab-content upcoming">
+              {billDetails}
             </div>
-            <div className="tab-content">
+            <div className="tab-content history">
               {historicalVotesPosition}
             </div>
-            <div className="tab-content">
+            <div className="tab-content tweets">
               {timeline}
             </div>
         </div>
       )
   }
+
 }
