@@ -16,6 +16,12 @@ componentDidMount() {
               singleRepresentative = {this.props.singleRepresentative}
               onGetMember={this.props.onGetMember}
               // apiKey={this.props.apiKey}
+              onGetTwitter={this.props.onGetTwitter}
+              onGetMemberBills={this.props.onGetMemberBills}
+              onGetHistoricalPositions={this.props.onGetHistoricalPositions}
+              timeline={this.props.timeline}
+              repBills={this.props.repBills}
+              historicalVotes={this.props.historicalVotes}
               />
            )
         }.bind(this))}
@@ -25,7 +31,14 @@ componentDidMount() {
             <RepProf
               data={rep}
               singleRepresentative = {this.props.singleRepresentative}
-              onGetMember={this.props.onGetMember} />
+              onGetMember={this.props.onGetMember}
+              onGetTwitter={this.props.onGetTwitter}
+              onGetMemberBills={this.props.onGetMemberBills}
+              onGetHistoricalPositions={this.props.onGetHistoricalPositions}
+              timeline={this.props.timeline}
+              repBills={this.props.repBills}
+              historicalVotes={this.props.historicalVotes}
+              />
           )
         }.bind(this))}
 
