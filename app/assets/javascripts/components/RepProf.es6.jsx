@@ -142,19 +142,21 @@ getTwitter(name){
 
       )
 
-      }
-
 
       var historicalVotesPosition = (
-        this.state.historicalVotes.map(function(vote) {
-          return(
-            <div>
-              <h5>{vote.description}</h5>
-              <span><h6>{vote.date}</h6></span><span><h6>{vote.position}</h6></span>
-            </div>
+          this.state.historicalVotes.map(function(vote) {
+            return(
+               <div>
+                  <h5>{vote.description}</h5>
+                  <span><h6>{vote.date}</h6></span><span><h6>{vote.position}</h6></span>
+                </div>
+              )
+            })
           )
-        })
-      )
+
+
+      }
+
 
 
 
