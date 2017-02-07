@@ -20,20 +20,26 @@ class RepProf extends React.Component{
 
   renderTabs() {
     $('.tabs li:nth-child(1)').click(function(event){
-      $(this).addClass("active")
-      $('.tabs li:nth-child(2)').removeClass("active")
-      $('.tabs li:nth-child(3)').removeClass("active")
-    })
+      $(this).addClass("active");
+      $('.tabs li:nth-child(2)').removeClass("active");
+      $('.tabs li:nth-child(3)').removeClass("active");
+      $('.tab-content:visible').hide();
+      $('.upcoming:hidden').show();
+    });
     $('.tabs li:nth-child(2)').click(function(event){
-      $(this).addClass("active")
-      $('.tabs li:nth-child(1)').removeClass("active")
-      $('.tabs li:nth-child(3)').removeClass("active")
-    })
+      $(this).addClass("active");
+      $('.tabs li:nth-child(1)').removeClass("active");
+      $('.tabs li:nth-child(3)').removeClass("active");
+      $('.tab-content:visible').hide();
+      $('.history:hidden').show();
+    });
     $('.tabs li:nth-child(3)').click(function(event){
-      $(this).addClass("active")
-      $('.tabs li:nth-child(1)').removeClass("active")
-      $('.tabs li:nth-child(2)').removeClass("active")
-    })
+      $(this).addClass("active");
+      $('.tabs li:nth-child(1)').removeClass("active");
+      $('.tabs li:nth-child(2)').removeClass("active");
+      $('.tab-content:visible').hide();
+      $('.tweets:hidden').show();
+    });
   };
 
   // getMember(id) {
@@ -126,9 +132,9 @@ class RepProf extends React.Component{
                   <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
 
                 <ul className="tabs">
-                  <li className="active"><a href="#whole_self"><h3>Upcoming Bills</h3></a></li>
-                  <li ><a href="#kindness"><h3>Vote History</h3></a></li>
-                  <li><a href="#whole_self"><h3>Tweets</h3></a></li>
+                  <li className="active"><a href="#upcoming"><h3>Upcoming Bills</h3></a></li>
+                  <li ><a href="#history"><h3>Vote History</h3></a></li>
+                  <li><a href="#tweets"><h3>Tweets</h3></a></li>
                 </ul>
               </div>
             )
@@ -173,14 +179,14 @@ class RepProf extends React.Component{
     return(
        <div>
             <p className= "rep-name" id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
-            {details}
-            <div className="tab-content">
-            {billDetails}
+              {details}
+            <div className="tab-content upcoming">
+              {billDetails}
             </div>
-            <div className="tab-content">
+            <div className="tab-content history">
               {historicalVotesPosition}
             </div>
-            <div className="tab-content">
+            <div className="tab-content tweets">
               {timeline}
             </div>
         </div>
