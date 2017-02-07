@@ -59,6 +59,7 @@ getTwitter(name){
   })
   .done(function(response){
     this.setState({timeline: response})
+
   }.bind(this))
 }
 
@@ -72,7 +73,7 @@ getTwitter(name){
     })
     .done(function(response) {
       this.setState({historicalVotes: response.results[0].votes})
-      debugger
+
     }.bind(this))
 
 
@@ -134,8 +135,10 @@ getTwitter(name){
         this.state.timeline.map(function(tweet){
           return(
             <section>
-            <h3>Tweets</h3>
+            <blockquote className="twitter-tweet">
             <p>{tweet.text}</p>
+            <p> -{tweet.user.name}(@{tweet.user.screen_name})</p>
+            </blockquote>
             </section>
           )
         })
