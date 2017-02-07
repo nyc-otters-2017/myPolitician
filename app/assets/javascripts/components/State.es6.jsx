@@ -2,10 +2,24 @@ class State extends React.Component{
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+    }
+    this.drawMap = this.drawMap.bind(this)
   }
 
   componentDidMount() {
+    // debugger
+    this.drawMap()
+  }
+
+  componentDidUpdate() {
+    // debugger
+    // console.log('componentDidUpdate', this.props)
+    this.drawMap()
+
+  }
+
+  drawMap() {
 
     var width = 960,
         height = 720,
@@ -53,7 +67,6 @@ class State extends React.Component{
 
     d3.json("NYS_Congressional_Districts.json", function(error, ny) {
         if (error) throw error;
-        console.log(ny)
         g.selectAll("path")
           .data(topojson.feature(ny, ny.objects.districts).features)
           .enter().append("path")
@@ -82,13 +95,17 @@ class State extends React.Component{
 // This triggers the events to fire
         g.selectAll(".feature")
         .on("click", function(ny) {
-          this.props.onGetHouseMember(ny.properties.CD114FP)
-          this.props.onGetStateMembers()
-          this.props.onGetMember(ny.properties.Member_Id)
-          this.props.onGetMemberBills(ny.properties.Member_Id);
-          this.props.onGetHistoricalPositions(ny.properties.Member_Id);
-          }.bind(this))
 
+          Promise.all([
+                       this.props.onGetHouseMember(ny.properties.CD114FP),
+                       this.props.onGetHistoricalPositions(ny.properties.Member_Id),
+                       this.props.onGetMember(ny.properties.Member_Id),
+                       this.props.onGetMemberBills(ny.properties.Member_Id),
+                       this.props.onGetStateMembers(),
+                     ]).then(function(responses) {
+                       
+                    }.bind(this))
+          }.bind(this))
     }.bind(this))
 
     function clicked(d) {

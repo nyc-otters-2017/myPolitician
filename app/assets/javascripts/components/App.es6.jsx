@@ -6,7 +6,7 @@ class App extends React.Component {
     this.state = {
       // key: this.props.CONGRESS_API,
       stateMembers: [],
-      houseMembers: [],
+      houseMember: [],
       singleRepresentative: [],
       repBills: [],
       timeline: [],
@@ -18,12 +18,24 @@ class App extends React.Component {
     this.getMemberBills = this.getMemberBills.bind(this)
     this.getTwitter = this.getTwitter.bind(this)
     this.getHistoricalPositions = this.getHistoricalPositions.bind(this)
+    this.getName = this.getName.bind(this)
+
   }
+
+componentDidUpdate() {
+}
+
 
 // Props for MapPage
 ////////////////////
 // Currently only returns senate members from NY state
 
+
+
+  getName(name){
+    member = this.state.houseMember.twitter_id
+    // debugger
+  }
   getStateMembers(){
     // let key = this.state.key
     $.ajax({
@@ -46,8 +58,12 @@ class App extends React.Component {
         request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
       }
     })
-    .then(function(response) {
-      this.setState({houseMembers: response.results})
+    .done(function(response) {
+      console.log('IAM .getHouseMember')
+      // console.log('get house members', response.results)
+      this.setState({houseMember: response.results})
+      // This way the twitter response is
+      this.getTwitter(response.results[0].twitter_id)
     }.bind(this))
 
   }
@@ -55,8 +71,9 @@ class App extends React.Component {
 // Rep Profile props
 ////////////////////
 
+
   getMember(id) {
-      // let key = this.state.key
+      let key = this.state.key
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
         beforeSend: function(request) {
@@ -69,7 +86,7 @@ class App extends React.Component {
   }
 
   getMemberBills(id) {
-      // let key = this.state.key
+      let key = this.state.key
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
         beforeSend: function(request) {
@@ -85,6 +102,7 @@ class App extends React.Component {
 
 
   getTwitter(twitterHandle) {
+    // debugger
     $.ajax({
       type: 'post',
       url: 'maps/congress_tweets',
@@ -94,6 +112,7 @@ class App extends React.Component {
       this.setState({timeline: response})
     }.bind(this))
   }
+
 
   getHistoricalPositions(id) {
 
@@ -108,7 +127,6 @@ class App extends React.Component {
 
     }.bind(this))
 
-
   }
 
 
@@ -119,6 +137,8 @@ class App extends React.Component {
     return(
       <div>
         <MapPage
+          onGetName ={this.getName}
+          houseMember={this.state.houseMember}
           onGetStateMembers={this.getStateMembers}
           onGetHouseMember={this.getHouseMember}
           onGetMember={this.getMember}
@@ -130,7 +150,7 @@ class App extends React.Component {
           stateMembers={this.state.stateMembers}
           singleRepresentative={this.state.singleRepresentative}
           onGetMember={this.getMember}
-          houseMembers={this.state.houseMembers}
+          houseMember={this.state.houseMember}
           // apiKey={this.state.key}
           onGetTwitter={this.getTwitter}
           timeline={this.state.timeline}

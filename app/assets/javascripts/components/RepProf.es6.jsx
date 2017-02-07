@@ -10,6 +10,7 @@ class RepProf extends React.Component{
     this.renderTabs = this.renderTabs.bind(this)
   }
 
+
   componentDidMount() {
     this.renderTabs();
   }
@@ -42,63 +43,6 @@ class RepProf extends React.Component{
     });
   };
 
-  // getMember(id) {
-  //     // let key = this.state.key
-  //     $.ajax({
-  //       url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
-  //       beforeSend: function(request) {
-  //         request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
-  //       }
-  //     })
-  //     .done(function(response) {
-  //       this.setState({singleRepresentative: response.results})
-  //     }.bind(this))
-  // }
-
-
-//   getMemberBills(id) {
-//       // let key = this.state.key
-//       $.ajax({
-//         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
-//         beforeSend: function(request) {
-//           request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
-//         }
-//
-//       })
-//       .done(function(response) {
-//         this.setState({repBills: response.results[0].bills})
-//       }.bind(this))
-//   }
-//
-//
-//
-// getTwitter(name){
-//   $.ajax({
-//     type: 'post',
-//     url: 'maps/congress_tweets',
-//     data: {twitter_account: { handle: name }}
-//   })
-//   .done(function(response){
-//     this.setState({timeline: response})
-//
-//   }.bind(this))
-// }
-//
-//   getHistoricalPositions(id) {
-//
-//     $.ajax({
-//       url:'https://api.propublica.org/congress/v1/members/' + id + '/votes.json',
-//       beforeSend: function(request) {
-//         request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
-//       }
-//     })
-//     .done(function(response) {
-//       this.setState({historicalVotes: response.results[0].votes})
-//
-//     }.bind(this))
-//
-//
-//   }
 
   handleClick(e) {
     e.preventDefault();
@@ -110,10 +54,10 @@ class RepProf extends React.Component{
 
     // This function uses twitter handle passed down as a prop
     //It can be bound to a different event
-    this.props.onGetTwitter(this.props.data.twitter_id);
-    this.props.onGetMember(memberId);
-    this.props.onGetMemberBills(memberId);
-    this.props.onGetHistoricalPositions(memberId);
+    // this.props.onGetTwitter(this.props.data.twitter_id);
+    // this.props.onGetMember(memberId);
+    // this.props.onGetMemberBills(memberId);
+    // this.props.onGetHistoricalPositions(memberId);
   };
 
 
