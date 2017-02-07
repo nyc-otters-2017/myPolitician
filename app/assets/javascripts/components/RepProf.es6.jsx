@@ -7,10 +7,34 @@ class RepProf extends React.Component{
       // key: this.props.apiKey
     }
     this.handleClick = this.handleClick.bind(this)
+    this.renderTabs = this.renderTabs.bind(this)
   }
 
   componentDidMount() {
+    this.renderTabs();
   }
+
+  componentDidUpdate() {
+    this.renderTabs();
+  }
+
+  renderTabs() {
+    $('.tabs li:nth-child(1)').click(function(event){
+      $(this).addClass("active")
+      $('.tabs li:nth-child(2)').removeClass("active")
+      $('.tabs li:nth-child(3)').removeClass("active")
+    })
+    $('.tabs li:nth-child(2)').click(function(event){
+      $(this).addClass("active")
+      $('.tabs li:nth-child(1)').removeClass("active")
+      $('.tabs li:nth-child(3)').removeClass("active")
+    })
+    $('.tabs li:nth-child(3)').click(function(event){
+      $(this).addClass("active")
+      $('.tabs li:nth-child(1)').removeClass("active")
+      $('.tabs li:nth-child(2)').removeClass("active")
+    })
+  };
 
   // getMember(id) {
   //     // let key = this.state.key
@@ -100,7 +124,6 @@ class RepProf extends React.Component{
                 <h3 className="soc-acc">Social Media </h3>
                   <a href={"http://www.facebook.com/" + profile.facebook_account}><i className="fa fa-facebook-official social-icon" aria-hidden="true"></i></a>
                   <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
-                  <a href={"http://www.youtube.com/" + profile.youtube_account}><i className="fa fa-youtube social-icon" aria-hidden="true"></i></a>
 
                 <ul className="tabs">
                   <li className="active"><a href="#whole_self"><h3>Upcoming Bills</h3></a></li>
@@ -163,4 +186,5 @@ class RepProf extends React.Component{
         </div>
       )
   }
+
 }
