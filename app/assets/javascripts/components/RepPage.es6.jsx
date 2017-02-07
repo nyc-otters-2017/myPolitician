@@ -9,7 +9,7 @@ componentDidMount() {
     return(
       <section>
         <h2> My State Rep Info </h2>
-        {this.props.reps.map(function(rep, indx){
+        {this.props.stateMembers.map(function(rep, indx){
           return(
             <RepProf
               data={rep}

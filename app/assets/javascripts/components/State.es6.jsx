@@ -82,8 +82,10 @@ class State extends React.Component{
 
         g.selectAll(".feature")
         .on("click", function(ny) {
+          debugger
           this.props.onGetHouseMember(ny.properties.CD114FP)
-          this.props.onGetState()
+          this.props.onGetStateMembers()
+          this.props.onGetMember()
           }.bind(this))
 
     }.bind(this))
@@ -129,7 +131,7 @@ class State extends React.Component{
     handleClick(e) {
         e.preventDefault;
         state = e.target.innerHTML;
-        this.props.onGetState(state);
+        this.props.onGetStateMembers(state);
     }
 
     render(){

@@ -1,13 +1,16 @@
-class MapPage extends React.Component{
+class MapPage extends React.Component {
 
-  constructor(){
+  constructor() {
     super()
-
   }
 
-  render(){
+  render() {
     return(
-      <State onGetState = {this.props.onGetState} onGetHouseMember={this.props.onGetHouseMember} />
+      <State
+        onGetStateMembers = {this.props.onGetStateMembers}
+        onGetHouseMember={this.props.onGetHouseMember}
+        onGetMember={this.props.onGetMember}
+        />
     )
   }
 }
