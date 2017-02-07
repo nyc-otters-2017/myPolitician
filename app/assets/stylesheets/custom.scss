@@ -28,6 +28,11 @@ header h1{
   display: inline-block;
 }
 
+svg {
+    border: 1px solid black;
+
+}
+
 #logo {
   margin-left: 50px;
   font-weight: 900;
@@ -72,11 +77,6 @@ header h1{
   fill:blue;
   }
 
-svg {
-    border: 1px solid black;
-
-}
-
 .mesh {
   fill: none;
   stroke: #bbb;
@@ -92,5 +92,5 @@ svg {
   position: absolute;
   text-align: center;
   width: 250px;
-  height: 100px;
+  height: 125px;
 }
