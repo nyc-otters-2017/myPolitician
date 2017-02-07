@@ -4,15 +4,9 @@ class RepProf extends React.Component{
     super(props)
     this.state = {
       show: false,
-      singleRepresentative: [],
-      repBills: [],
-      timeline: [],
-      historicalVotes: []
       // key: this.props.apiKey
     }
     this.handleClick = this.handleClick.bind(this)
-    this.getMemberBills = this.getMemberBills.bind(this)
-    this.getTwitter = this.getTwitter.bind(this)
   }
 
   componentDidMount() {
@@ -32,49 +26,49 @@ class RepProf extends React.Component{
   // }
 
 
-  getMemberBills(id) {
-      // let key = this.state.key
-      $.ajax({
-        url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
-        beforeSend: function(request) {
-          request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
-        }
-
-      })
-      .done(function(response) {
-        this.setState({repBills: response.results[0].bills})
-      }.bind(this))
-  }
-
-
-
-getTwitter(name){
-  $.ajax({
-    type: 'post',
-    url: 'maps/congress_tweets',
-    data: {twitter_account: { handle: name }}
-  })
-  .done(function(response){
-    this.setState({timeline: response})
-
-  }.bind(this))
-}
-
-  getHistoricalPositions(id) {
-
-    $.ajax({
-      url:'https://api.propublica.org/congress/v1/members/' + id + '/votes.json',
-      beforeSend: function(request) {
-        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
-      }
-    })
-    .done(function(response) {
-      this.setState({historicalVotes: response.results[0].votes})
-
-    }.bind(this))
-
-
-  }
+//   getMemberBills(id) {
+//       // let key = this.state.key
+//       $.ajax({
+//         url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
+//         beforeSend: function(request) {
+//           request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+//         }
+//
+//       })
+//       .done(function(response) {
+//         this.setState({repBills: response.results[0].bills})
+//       }.bind(this))
+//   }
+//
+//
+//
+// getTwitter(name){
+//   $.ajax({
+//     type: 'post',
+//     url: 'maps/congress_tweets',
+//     data: {twitter_account: { handle: name }}
+//   })
+//   .done(function(response){
+//     this.setState({timeline: response})
+//
+//   }.bind(this))
+// }
+//
+//   getHistoricalPositions(id) {
+//
+//     $.ajax({
+//       url:'https://api.propublica.org/congress/v1/members/' + id + '/votes.json',
+//       beforeSend: function(request) {
+//         request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+//       }
+//     })
+//     .done(function(response) {
+//       this.setState({historicalVotes: response.results[0].votes})
+//
+//     }.bind(this))
+//
+//
+//   }
 
   handleClick(e) {
     e.preventDefault();
@@ -84,14 +78,12 @@ getTwitter(name){
     name = e.target.innerHTML;
     memberId = this.refs[name].id;
 
-
     // This function uses twitter handle passed down as a prop
     //It can be bound to a different event
-    this.getTwitter(this.props.data.twitter_id)
+    this.props.onGetTwitter(this.props.data.twitter_id);
     this.props.onGetMember(memberId);
-    this.getMemberBills(memberId);
-    this.getHistoricalPositions(memberId);
-
+    this.props.onGetMemberBills(memberId);
+    this.props.onGetHistoricalPositions(memberId);
   };
 
 
@@ -102,7 +94,7 @@ getTwitter(name){
     if(this.state.show == true) {
       // Displays Contact Information for Representative
       var details = (
-         this.state.singleRepresentative.map(function(profile) {
+         this.props.singleRepresentative.map(function(profile) {
             return(
               <div>
                 <h3 className="soc-acc">Social Media </h3>
@@ -122,7 +114,7 @@ getTwitter(name){
 
       var billDetails = (
 
-        this.state.repBills.map(function(bill) {
+        this.props.repBills.map(function(bill) {
             return(
               <p className="upcoming-bills">{bill.title}</p>
             )
@@ -130,7 +122,7 @@ getTwitter(name){
         )
 
       var timeline = (
-        this.state.timeline.map(function(tweet){
+        this.props.timeline.map(function(tweet){
           return(
             <section>
             <blockquote className="twitter-tweet">
@@ -144,7 +136,7 @@ getTwitter(name){
       )
 
       var historicalVotesPosition = (
-          this.state.historicalVotes.map(function(vote) {
+          this.props.historicalVotes.map(function(vote) {
             return(
                <div>
                   <p>{vote.description}</p>

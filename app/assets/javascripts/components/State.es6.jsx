@@ -1,9 +1,8 @@
 class State extends React.Component{
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {}
-    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
@@ -80,14 +79,14 @@ class State extends React.Component{
           .on("mouseout", function(ny) {
             tooltip.style("opacity", 0);
           })
-
+// This triggers the events to fire
         g.selectAll(".feature")
         .on("click", function(ny) {
-          debugger
           this.props.onGetHouseMember(ny.properties.CD114FP)
           this.props.onGetStateMembers()
-          // Need to update ny info with member id
-          this.props.onGetMember(ny.properties.id)
+          this.props.onGetMember(ny.properties.Member_Id)
+          this.props.onGetMemberBills(ny.properties.Member_Id);
+          this.props.onGetHistoricalPositions(ny.properties.Member_Id);
           }.bind(this))
 
     }.bind(this))
@@ -130,11 +129,7 @@ class State extends React.Component{
         }
     }
 
-    handleClick(e) {
-        e.preventDefault;
-        state = e.target.innerHTML;
-        this.props.onGetStateMembers(state);
-    }
+
 
     render(){
       return(
