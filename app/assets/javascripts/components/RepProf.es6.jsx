@@ -113,11 +113,9 @@ getTwitter(name){
                   <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
                   <a href={"http://www.youtube.com/" + profile.youtube_account}><i className="fa fa-youtube social-icon" aria-hidden="true"></i></a>
 
-                <h4 className="bills-sponsored">Bills Sponsored: {profile.roles[0].bills_sponsored}</h4>
-
                 <ul className="tabs">
                   <li className="active"><a href="#whole_self"><h3>Upcoming Bills</h3></a></li>
-                  <li><a href="#kindness"><h3>Vote History</h3></a></li>
+                  <li ><a href="#kindness"><h3>Vote History</h3></a></li>
                   <li><a href="#whole_self"><h3>Tweets</h3></a></li>
                 </ul>
               </div>
