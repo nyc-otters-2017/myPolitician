@@ -113,10 +113,7 @@ getTwitter(name){
                   <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
                   <a href={"http://www.youtube.com/" + profile.youtube_account}><i className="fa fa-youtube social-icon" aria-hidden="true"></i></a>
 
-                <span><p>facebook:{profile.facebook_account}</p></span>
-                <span><p>twitter:{profile.twitter_account}</p></span>
-                <span><p>youtube:{profile.youtube_account}</p></span>
-                <p>Bills Sponsored: {profile.roles[0].bills_sponsored}</p>
+                <h4 className="bills-sponsored">Bills Sponsored: {profile.roles[0].bills_sponsored}</h4>
 
                 <ul className="tabs">
                   <li className="active"><a href="#whole_self"><h3>Upcoming Bills</h3></a></li>
@@ -165,11 +162,10 @@ getTwitter(name){
 
     return(
        <div>
-          <p id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
-          <div className="info-tabs">
+            <p className= "rep-name" id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
             {details}
             <div className="tab-content">
-              {billDetails}
+            {billDetails}
             </div>
             <div className="tab-content">
               {historicalVotesPosition}
@@ -177,7 +173,6 @@ getTwitter(name){
             <div className="tab-content">
               {timeline}
             </div>
-          </div>
         </div>
       )
   }
