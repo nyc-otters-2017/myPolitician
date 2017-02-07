@@ -85,7 +85,8 @@ class State extends React.Component{
           debugger
           this.props.onGetHouseMember(ny.properties.CD114FP)
           this.props.onGetStateMembers()
-          this.props.onGetMember()
+          // Need to update ny info with member id
+          this.props.onGetMember(ny.properties.id)
           }.bind(this))
 
     }.bind(this))
