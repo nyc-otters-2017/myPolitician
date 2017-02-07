@@ -26,7 +26,7 @@ componentDidMount() {
            )
         }.bind(this))}
         <h2>My House Rep Info</h2>
-        {this.props.houseMembers.map(function(rep, indx){
+        {this.props.houseMember.map(function(rep, indx){
           return(
             <RepProf
               data={rep}
