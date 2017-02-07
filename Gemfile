@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 ruby '~>2.3.0'
+gem 'twitter'
+gem 'oauth'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'd3-rails'
 gem 'pry'

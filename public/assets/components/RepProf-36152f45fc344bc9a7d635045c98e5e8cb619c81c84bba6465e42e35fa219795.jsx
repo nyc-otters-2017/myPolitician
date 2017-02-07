@@ -59,7 +59,6 @@ getTwitter(name){
   })
   .done(function(response){
     this.setState({timeline: response})
-
   }.bind(this))
 }
 
@@ -73,7 +72,7 @@ getTwitter(name){
     })
     .done(function(response) {
       this.setState({historicalVotes: response.results[0].votes})
-
+      debugger
     }.bind(this))
 
 
@@ -135,31 +134,27 @@ getTwitter(name){
         this.state.timeline.map(function(tweet){
           return(
             <section>
-            <blockquote className="twitter-tweet">
+            <h3>Tweets</h3>
             <p>{tweet.text}</p>
-            <p> -{tweet.user.name}(@{tweet.user.screen_name})</p>
-            </blockquote>
             </section>
           )
         })
 
       )
 
-
-      var historicalVotesPosition = (
-          this.state.historicalVotes.map(function(vote) {
-            return(
-               <div>
-                  <h5>{vote.description}</h5>
-                  <span><h6>{vote.date}</h6></span><span><h6>{vote.position}</h6></span>
-                </div>
-              )
-            })
-          )
-
-
       }
 
+
+      var historicalVotesPosition = (
+        this.state.historicalVotes.map(function(vote) {
+          return(
+            <div>
+              <h5>{vote.description}</h5>
+              <span><h6>{vote.date}</h6></span><span><h6>{vote.position}</h6></span>
+            </div>
+          )
+        })
+      )
 
 
 
