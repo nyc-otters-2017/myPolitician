@@ -9,8 +9,11 @@ class App extends React.Component {
       houseMembers: []}
     this.getState = this.getState.bind(this)
     this.getHouseMember = this.getHouseMember.bind(this)
+    this.getMember = this.getMember.bind(this)
   }
 
+// Props for MapPage
+////////////////////
   getState(state){
     // let key = this.state.key
     $.ajax({
@@ -38,6 +41,25 @@ class App extends React.Component {
     }.bind(this))
 
   }
+
+// Rep Profile props
+////////////////////
+
+  getMember(id) {
+      // let key = this.state.key
+      $.ajax({
+        url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
+        beforeSend: function(request) {
+          request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+        }
+      })
+      .done(function(response) {
+        this.setState({singleRepresentative: response.results})
+      }.bind(this))
+  }
+
+
+
 
 
 
