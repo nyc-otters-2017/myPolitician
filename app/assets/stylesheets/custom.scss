@@ -59,6 +59,54 @@ svg {
   margin-left: 50px;
 }
 
+.tab-content {
+  // height: 200px;
+  // overflow: auto;
+}
+
+.tabs {
+    padding: 0;
+    float: left;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    margin-bottom: 16px;
+    list-style: none;
+}
+
+.tabs li {
+    float: left;
+    margin-right: 10px;
+    padding: 10px 10px;
+    height: 65px;
+    line-height: 30px;
+}
+
+.tabs li a {
+    color: #666;
+    text-decoration: none;
+}
+
+.tabs li.active {
+    border: 1px solid #ccc;
+    border-bottom: 1px solid white;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-bottom: -1px;
+    height: 70px;
+    padding: 9px 14px;
+}
+
+.tabs li.active a {
+    color: black;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.upcoming-bills {
+  margin: 25px;
+  padding: 5px 30px 10px 0;
+}
+
 .map-container {
   position: relative;
   text-align: center;
