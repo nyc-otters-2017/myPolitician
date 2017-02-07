@@ -109,6 +109,9 @@ getTwitter(name){
             return(
               <div>
                 <h3 className="soc-acc">Social Media </h3>
+                <i className="fa fa-facebook-official social-icon" aria-hidden="true"></i>
+                <i className="fa fa-twitter social-icon" aria-hidden="true"></i>
+                <i className="fa fa-youtube social-icon" aria-hidden="true"></i>
                 <span><p>facebook:{profile.facebook_account}</p></span>
                 <span><p>twitter:{profile.twitter_account}</p></span>
                 <span><p>youtube:{profile.youtube_account}</p></span>
@@ -170,7 +173,7 @@ getTwitter(name){
             <div className="tab-content">
               {historicalVotesPosition}
             </div>
-            <div className="tab-content"> 
+            <div className="tab-content">
               {timeline}
             </div>
           </div>
