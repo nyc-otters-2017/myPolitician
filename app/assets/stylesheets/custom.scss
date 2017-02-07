@@ -82,7 +82,7 @@ svg {
 }
 
 .tab-content {
-  // display: none;
+  display: none;
 }
 
 .tabs {
@@ -123,9 +123,29 @@ svg {
     border-bottom: none;
 }
 
-.upcoming-bills {
+.bills {
+  display: inline-block;
+  padding: 16px;
+  margin: 10px 0;
+  width: 468px;
+  border: #ddd 1px solid;
+  border-top-color: #eee;
+  border-bottom-color: #bbb;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  // padding: 5px 30px 10px 0;
+}
+
+.vote-date {
+  color: #bbb;
+  font-variant: small-caps;
+  margin-left: 10px;
+}
+
+.vote-position {
+  font-size: 1.2em;
+  text-align: right;
   margin: 25px;
-  padding: 5px 30px 10px 0;
 }
 
 .map-container {
@@ -157,7 +177,6 @@ svg {
   background: #fff;
   box-shadow: 0 0 5px #999999;
   color: #333;
-  // padding-top: 3px;
   position: absolute;
   text-align: center;
   width: 250px;
