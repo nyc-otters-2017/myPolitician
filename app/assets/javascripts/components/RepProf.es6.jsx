@@ -145,7 +145,9 @@ class RepProf extends React.Component{
 
         this.props.repBills.map(function(bill) {
             return(
-              <p className="upcoming-bills">{bill.title}</p>
+              <div className="bills" >
+                <p>{bill.title}</p>
+              </div>
             )
           })
         )
@@ -167,9 +169,11 @@ class RepProf extends React.Component{
       var historicalVotesPosition = (
           this.props.historicalVotes.map(function(vote) {
             return(
-               <div>
-                  <p>{vote.description}</p>
-                  <span><p>{vote.date}</p></span><span><p>{vote.position}</p></span>
+                <div className="bills">
+                  <p>{vote.description}
+                    <span className="vote-date">{vote.date}</span>
+                  </p>
+                  <p className="vote-position">{vote.position}</p>
                 </div>
               )
             })
