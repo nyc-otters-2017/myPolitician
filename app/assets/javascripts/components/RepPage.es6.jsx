@@ -5,35 +5,29 @@ class RepPage extends React.Component{
 
 componentDidMount() {
 }
-
-  render(){
-
-
+  render() {
     return(
       <section>
-        
         <h2> My State Rep Info </h2>
-
-        {this.props.reps.map(function(rep, indx){
+        {this.props.stateMembers.map(function(rep, indx){
           return(
-
-            <RepProf  data={rep} singleRep = {this.props.singleRep} onGetMember={this.props.onGetMember} apiKey={this.props.apiKey} />
-
+            <RepProf
+              data={rep}
+              singleRep = {this.props.singleRep}
+              onGetMember={this.props.onGetMember}
+              // apiKey={this.props.apiKey}
+              />
            )
-
         }.bind(this))}
-
         <h2>My House Rep Info</h2>
-
         {this.props.houseMembers.map(function(rep, indx){
           return(
-
-            <RepProf  data={rep} singleRep = {this.props.singleRep} onGetMember={this.props.onGetMember} />
-
-           )
-
+            <RepProf
+              data={rep}
+              singleRep = {this.props.singleRep}
+              onGetMember={this.props.onGetMember} />
+          )
         }.bind(this))}
-
 
       </section>
     )

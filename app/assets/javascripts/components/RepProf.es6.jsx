@@ -11,28 +11,25 @@ class RepProf extends React.Component{
       // key: this.props.apiKey
     }
     this.handleClick = this.handleClick.bind(this)
-    this.getMember = this.getMember.bind(this)
     this.getMemberBills = this.getMemberBills.bind(this)
     this.getTwitter = this.getTwitter.bind(this)
   }
 
   componentDidMount() {
-
-
   }
 
-  getMember(id) {
-      // let key = this.state.key
-      $.ajax({
-        url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
-        beforeSend: function(request) {
-          request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
-        }
-      })
-      .done(function(response) {
-        this.setState({singleRepresentative: response.results})
-      }.bind(this))
-  }
+  // getMember(id) {
+  //     // let key = this.state.key
+  //     $.ajax({
+  //       url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
+  //       beforeSend: function(request) {
+  //         request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+  //       }
+  //     })
+  //     .done(function(response) {
+  //       this.setState({singleRepresentative: response.results})
+  //     }.bind(this))
+  // }
 
 
   getMemberBills(id) {
@@ -91,7 +88,7 @@ getTwitter(name){
     // This function uses twitter handle passed down as a prop
     //It can be bound to a different event
     this.getTwitter(this.props.data.twitter_id)
-    this.getMember(memberId);
+    this.props.onGetMember(memberId);
     this.getMemberBills(memberId);
     this.getHistoricalPositions(memberId);
 
