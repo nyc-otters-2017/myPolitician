@@ -109,11 +109,17 @@ getTwitter(name){
             return(
               <div>
                 <h3 className="soc-acc">Social Media </h3>
-                <span><p>facebook:{profile.facebook_account}</p></span>
-                <span><p>twitter:{profile.twitter_account}</p></span>
-                <span><p>youtube:{profile.youtube_account}</p></span>
-                <p>Bills Sponsored: {profile.roles[0].bills_sponsored}</p>
-                <h3 className="tab">Upcoming Bills</h3>
+                  <a href={"http://www.facebook.com/" + profile.facebook_account}><i className="fa fa-facebook-official social-icon" aria-hidden="true"></i></a>
+                  <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
+                  <a href={"http://www.youtube.com/" + profile.youtube_account}><i className="fa fa-youtube social-icon" aria-hidden="true"></i></a>
+
+                <h4 className="bills-sponsored">Bills Sponsored: {profile.roles[0].bills_sponsored}</h4>
+
+                <ul className="tabs">
+                  <li className="active"><a href="#whole_self"><h3>Upcoming Bills</h3></a></li>
+                  <li><a href="#kindness"><h3>Vote History</h3></a></li>
+                  <li><a href="#whole_self"><h3>Tweets</h3></a></li>
+                </ul>
               </div>
             )
           })
@@ -122,11 +128,8 @@ getTwitter(name){
       var billDetails = (
 
         this.state.repBills.map(function(bill) {
-
             return(
-              <div>
-                <p>{bill.title}</p>
-              </div>
+              <p className="upcoming-bills">{bill.title}</p>
             )
           })
         )
@@ -145,35 +148,31 @@ getTwitter(name){
 
       )
 
-
       var historicalVotesPosition = (
           this.state.historicalVotes.map(function(vote) {
             return(
                <div>
-                  <h5>{vote.description}</h5>
-                  <span><h6>{vote.date}</h6></span><span><h6>{vote.position}</h6></span>
+                  <p>{vote.description}</p>
+                  <span><p>{vote.date}</p></span><span><p>{vote.position}</p></span>
                 </div>
               )
             })
           )
-
-
       }
-
-
-
-
-
 
     return(
        <div>
-          <p id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
-          {details}
-          {billDetails}
-          {historicalVotesPosition}
-          {timeline}
-
-
+            <p className= "rep-name" id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
+            {details}
+            <div className="tab-content">
+            {billDetails}
+            </div>
+            <div className="tab-content">
+              {historicalVotesPosition}
+            </div>
+            <div className="tab-content">
+              {timeline}
+            </div>
         </div>
       )
   }
