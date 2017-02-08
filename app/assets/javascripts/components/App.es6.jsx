@@ -12,18 +12,17 @@ class App extends React.Component {
       timeline: [],
       historicalVotes: []
     }
-    this.getStateMembers = this.getStateMembers.bind(this)
-    this.getHouseMember = this.getHouseMember.bind(this)
-    this.getMember = this.getMember.bind(this)
-    this.getMemberBills = this.getMemberBills.bind(this)
-    this.getTwitter = this.getTwitter.bind(this)
+    this.getStateMembers        = this.getStateMembers.bind(this)
+    this.getHouseMember         = this.getHouseMember.bind(this)
+    this.getMember              = this.getMember.bind(this)
+    this.getMemberBills         = this.getMemberBills.bind(this)
+    this.getTwitter             = this.getTwitter.bind(this)
     this.getHistoricalPositions = this.getHistoricalPositions.bind(this)
-    this.getName = this.getName.bind(this)
+    this.getName                = this.getName.bind(this)
+
 
   }
 
-componentDidUpdate() {
-}
 
 
 // Props for MapPage
@@ -68,6 +67,8 @@ componentDidUpdate() {
 
 // Rep Profile props
 ////////////////////
+
+
 
 
   getMember(id) {
@@ -135,27 +136,29 @@ componentDidUpdate() {
     return(
       <div>
         <MapPage
-          onGetName ={this.getName}
-          houseMember={this.state.houseMember}
-          onGetStateMembers={this.getStateMembers}
-          onGetHouseMember={this.getHouseMember}
-          onGetMember={this.getMember}
-          onGetTwitter={this.getTwitter}
-          onGetMemberBills={this.getMemberBills}
-          onGetHistoricalPositions={this.getHistoricalPositions}
+          onGetName                 ={this.getName}
+          houseMember               ={this.state.houseMember}
+          onGetStateMembers         ={this.getStateMembers}
+          onGetHouseMember          ={this.getHouseMember}
+          onGetMember               ={this.getMember}
+          onGetTwitter              ={this.getTwitter}
+          onGetMemberBills          ={this.getMemberBills}
+          onGetHistoricalPositions  ={this.getHistoricalPositions}
+
         />
         <RepPage
-          stateMembers={this.state.stateMembers}
-          singleRepresentative={this.state.singleRepresentative}
-          onGetMember={this.getMember}
-          houseMember={this.state.houseMember}
+          stateMembers              ={this.state.stateMembers}
+          singleRepresentative      ={this.state.singleRepresentative}
+          onGetMember               ={this.getMember}
+          houseMember               ={this.state.houseMember}
           // apiKey={this.state.key}
-          onGetTwitter={this.getTwitter}
-          timeline={this.state.timeline}
-          onGetMemberBills={this.getMemberBills}
-          repBills={this.state.repBills}
-          onGetHistoricalPositions={this.getHistoricalPositions}
-          historicalVotes={this.state.historicalVotes}
+          onGetTwitter              ={this.getTwitter}
+          timeline                  ={this.state.timeline}
+          onGetMemberBills          ={this.getMemberBills}
+          repBills                  ={this.state.repBills}
+          onGetHistoricalPositions  ={this.getHistoricalPositions}
+          historicalVotes           ={this.state.historicalVotes}
+
         />
       </div>
     )

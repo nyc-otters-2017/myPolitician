@@ -86,25 +86,16 @@ class State extends React.Component{
           .on("mouseout", function(ny) {
             tooltip.style("opacity", 0);
           })
-          
+
 // This triggers the events to fire
         g.selectAll(".feature")
         .on("click", function(ny) {
-
-          // Promise.all([
-          //              this.props.onGetHouseMember(ny.properties.CD114FP),
-          //              this.props.onGetHistoricalPositions(ny.properties.Member_Id),
-          //              this.props.onGetMember(ny.properties.Member_Id),
-          //              this.props.onGetMemberBills(ny.properties.Member_Id),
-          //              this.props.onGetStateMembers(),
-          //            ]).then(function(responses) {
-          //
-          //           }.bind(this))
           this.props.onGetHouseMember(ny.properties.CD114FP)
           this.props.onGetHistoricalPositions(ny.properties.Member_Id)
-          this.props.onGetMember(ny.properties.Member_Id),
-          this.props.onGetMemberBills(ny.properties.Member_Id),
+          this.props.onGetMember(ny.properties.Member_Id)
+          this.props.onGetMemberBills(ny.properties.Member_Id)
           this.props.onGetStateMembers()
+      
           }.bind(this))
     }.bind(this))
 
