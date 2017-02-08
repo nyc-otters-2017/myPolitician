@@ -3,7 +3,7 @@ class RepProf extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      show: false,
+      // show: false,
       // key: this.props.apiKey
     }
     this.handleClick = this.handleClick.bind(this)
@@ -52,8 +52,8 @@ class RepProf extends React.Component{
 
     this.setState({show: !this.state.show});
 
-    name = e.target.innerHTML;
-    memberId = this.refs[name].id;
+    // name = e.target.innerHTML;
+    // memberId = this.refs[name].id;
 
     // This function uses twitter handle passed down as a prop
     //It can be bound to a different event
@@ -67,8 +67,7 @@ class RepProf extends React.Component{
 
 
   render() {
-
-    if(this.state.show == true) {
+    if(this.state.show == true || this.props.defaultShowInfo) {
       // Displays Contact Information for Representative
       var details = (
          this.props.singleRepresentative.map(function(profile) {
@@ -80,7 +79,7 @@ class RepProf extends React.Component{
                   <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
                 </div>
                 <ul className="tabs">
-                  <li className="active"><a href="#upcoming"><h3>Upcoming Bills</h3></a></li>
+                  <li className="active"><a href="#upcoming"><h3>Introduced Bills</h3></a></li>
                   <li><a href="#history"><h3>Vote History</h3></a></li>
                   <li><a href="#tweets"><h3>Tweets</h3></a></li>
                 </ul>

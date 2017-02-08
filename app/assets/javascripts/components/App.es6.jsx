@@ -5,6 +5,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       // key: this.props.CONGRESS_API,
+      defaultShow: true,
       stateMembers: [],
       houseMember: [],
       singleRepresentative: [],
@@ -145,6 +146,7 @@ componentDidUpdate() {
           onGetHistoricalPositions={this.getHistoricalPositions}
         />
         <RepPage
+          defaultShowInfo={this.state.defaultShow}
           stateMembers={this.state.stateMembers}
           singleRepresentative={this.state.singleRepresentative}
           onGetMember={this.getMember}

@@ -30,6 +30,7 @@ componentDidMount() {
           return(
             <RepProf
               data={rep}
+              defaultShowInfo={this.props.defaultShowInfo}
               singleRepresentative = {this.props.singleRepresentative}
               onGetMember={this.props.onGetMember}
               onGetTwitter={this.props.onGetTwitter}
