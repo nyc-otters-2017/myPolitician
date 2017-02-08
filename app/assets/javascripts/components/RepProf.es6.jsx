@@ -65,7 +65,13 @@ class RepProf extends React.Component{
   };
 
   votePosition(vote) {
-    console.log(vote);
+    if(vote === "Yes"){
+      return (<div className="vote-container"><p className='voted vote-date'>Voted</p><p className='vote-yes'>{vote}</p></div>)
+
+    }
+    else{
+      return (<div className="vote-container"><p className='voted vote-date'>Voted</p><p className='vote-no'>{vote}</p></div>)
+    }
   };
 
   render() {
@@ -122,9 +128,7 @@ class RepProf extends React.Component{
                   <p>{vote.description}
                     <span className="vote-date">{vote.date}</span>
                   </p>
-                  <div className="vote-container">
-                    {this.votePosition(vote.description)}
-                  </div>
+                    {this.votePosition(vote.position)}
                 </div>
               )
             })
