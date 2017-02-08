@@ -12,10 +12,11 @@ componentDidMount() {
     return(
       <section>
         <h2> My State Rep Info </h2>
-        {this.props.stateMembers.map(function(rep, indx){
+        {this.props.stateMembers.map(function(rep, i){
           return(
             <RepProf
-              data={rep}
+              data                        ={rep}
+              key                         ={i}
               singleRepresentative        ={this.props.singleRepresentative}
               onGetMember                 ={this.props.onGetMember}
               // apiKey={this.props.apiKey}
@@ -29,10 +30,11 @@ componentDidMount() {
            )
         }.bind(this))}
         <h2>My House Rep Info</h2>
-        {this.props.houseMember.map(function(rep, indx){
+        {this.props.houseMember.map(function(rep, i){
           return(
             <RepProf
               data                     ={rep}
+              key                      ={i}
               singleRepresentative     ={this.props.singleRepresentative}
               onGetMember              ={this.props.onGetMember}
               onGetTwitter             ={this.props.onGetTwitter}

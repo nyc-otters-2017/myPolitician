@@ -68,9 +68,9 @@ class RepProf extends React.Component{
     if(this.state.show == true || this.props.defaultShowInfo) {
       // Displays Contact Information for Representative
       var details = (
-         this.props.singleRepresentative.map(function(profile) {
+         this.props.singleRepresentative.map(function(profile, i) {
             return(
-              <div>
+              <div key={i}>
                 <div className="social-media">
                   <a href={"http://www.facebook.com/" + profile.facebook_account}><i className="fa fa-facebook-official social-icon" aria-hidden="true"></i></a>
                   <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
@@ -85,23 +85,32 @@ class RepProf extends React.Component{
           })
       );
 
-      var billDetails = (
-        this.props.repBills.map(function(bill) {
-            return(
-              <div className="bills" >
-                <p>{bill.title}</p>
-                <div className ="search-bill">
-                  <a href={"https://www.congress.gov/search?q={%22source%22:%22legislation%22,%22search%22:%22" + bill.number + "%22}&searchResultViewType=expanded"}><span className="vote-date"><i className="fa fa-search search-icon" aria-hidden="true"></i>More Information</span></a>
+
+      if(this.props.repBills.length > 0) {
+        var billDetails = (
+          this.props.repBills.map(function(bill,i) {
+              return(
+                <div key={i} className="bills" >
+                  <p>{bill.title}</p>
+                  <div className ="search-bill">
+                    <a href={"https://www.congress.gov/search?q={%22source%22:%22legislation%22,%22search%22:%22" + bill.number + "%22}&searchResultViewType=expanded"}><span className="vote-date"><i className="fa fa-search search-icon" aria-hidden="true"></i>More Information</span></a>
+                  </div>
                 </div>
-              </div>
-            )
-          })
-        );
+              )
+            })
+        )
+      } else {
+        var billDetails = (
+
+            <p className="vote-date">This Representative has not introduced any recent bills</p>
+
+        )
+      };
 
       var timeline = (
-        this.props.timeline.map(function(tweet){
+        this.props.timeline.map(function(tweet,i){
           return(
-            <section>
+            <section key={i}>
             <blockquote className="twitter-tweet">
             <p>{tweet.text}</p>
             <p> -{tweet.user.name}(@{tweet.user.screen_name})</p>
@@ -113,9 +122,9 @@ class RepProf extends React.Component{
       );
 
       var historicalVotesPosition = (
-          this.props.historicalVotes.map((vote) => {
+          this.props.historicalVotes.map((vote,i) => {
             return(
-                <div className="bills">
+                <div key={i} className="bills">
                   <p>{vote.description}
                   <br></br><span className="vote-date text-right">{vote.date}</span><br></br>
                   </p>
