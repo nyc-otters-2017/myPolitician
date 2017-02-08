@@ -102,6 +102,9 @@ class RepProf extends React.Component{
             return(
               <div className="bills" >
                 <p>{bill.title}</p>
+                <div className ="search-bill">
+                  <a href={"https://www.congress.gov/search?q={%22source%22:%22legislation%22,%22search%22:%22" + bill.title + "%22}&searchResultViewType=expanded"}><span className="vote-date"><i className="fa fa-search search-icon" aria-hidden="true"></i>More Information</span></a>
+                </div>
               </div>
             )
           })
