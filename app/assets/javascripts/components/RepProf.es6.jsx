@@ -24,6 +24,7 @@ class RepProf extends React.Component{
       $(this).addClass("active");
       $('.tabs li:nth-child(2)').removeClass("active");
       $('.tabs li:nth-child(3)').removeClass("active");
+      $('.upcoming').addClass("tab-content");
       $('.tab-content:visible').hide();
       $('.upcoming:hidden').show();
     });
@@ -31,6 +32,7 @@ class RepProf extends React.Component{
       $(this).addClass("active");
       $('.tabs li:nth-child(1)').removeClass("active");
       $('.tabs li:nth-child(3)').removeClass("active");
+      $('.upcoming').addClass("tab-content");
       $('.tab-content:visible').hide();
       $('.history:hidden').show();
     });
@@ -38,6 +40,7 @@ class RepProf extends React.Component{
       $(this).addClass("active");
       $('.tabs li:nth-child(1)').removeClass("active");
       $('.tabs li:nth-child(2)').removeClass("active");
+      $('.upcoming').addClass("tab-content");
       $('.tab-content:visible').hide();
       $('.tweets:hidden').show();
     });
@@ -71,13 +74,14 @@ class RepProf extends React.Component{
          this.props.singleRepresentative.map(function(profile) {
             return(
               <div>
-                <h3 className="soc-acc"></h3>
+
+                <div className="social-media">
                   <a href={"http://www.facebook.com/" + profile.facebook_account}><i className="fa fa-facebook-official social-icon" aria-hidden="true"></i></a>
                   <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
-
+                </div>
                 <ul className="tabs">
                   <li className="active"><a href="#upcoming"><h3>Upcoming Bills</h3></a></li>
-                  <li ><a href="#history"><h3>Vote History</h3></a></li>
+                  <li><a href="#history"><h3>Vote History</h3></a></li>
                   <li><a href="#tweets"><h3>Tweets</h3></a></li>
                 </ul>
               </div>
@@ -128,7 +132,7 @@ class RepProf extends React.Component{
        <div>
             <p className= "rep-name" id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
               {details}
-            <div className="tab-content upcoming">
+            <div className="upcoming">
               {billDetails}
             </div>
             <div className="tab-content history">
