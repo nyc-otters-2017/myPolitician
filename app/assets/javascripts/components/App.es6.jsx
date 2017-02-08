@@ -59,8 +59,6 @@ componentDidUpdate() {
       }
     })
     .done(function(response) {
-      console.log('IAM .getHouseMember')
-      // console.log('get house members', response.results)
       this.setState({houseMember: response.results})
       // This way the twitter response is
       this.getTwitter(response.results[0].twitter_id)
