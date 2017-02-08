@@ -120,6 +120,7 @@ class App extends React.Component {
     return(
       <div>
         <MapPage
+        
           onGetName                 ={this.getName}
           houseMember               ={this.state.houseMember}
           onGetStateMembers         ={this.getStateMembers}
