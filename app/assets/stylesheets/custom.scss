@@ -93,6 +93,7 @@ svg {
 .tab-container {
   margin-left: 15px;
 }
+
 .tabs {
     padding: 0;
     float: left;
@@ -157,6 +158,12 @@ svg {
   margin: 0 10px;
 }
 
+.text-right {
+  float: right;
+  font-size: .8em;
+  margin-top: 15px;
+}
+
 .voted {
   display: inline-block;
   text-align: right;
@@ -204,7 +211,7 @@ svg {
 
 .feature.active{
   fill:blue;
-  }
+}
 
 .mesh {
   fill: none;

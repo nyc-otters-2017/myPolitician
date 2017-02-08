@@ -117,7 +117,7 @@ class RepProf extends React.Component{
             return(
                 <div className="bills">
                   <p>{vote.description}
-                    <span className="vote-date">{vote.date}</span>
+                  <br></br><span className="vote-date text-right">{vote.date}</span><br></br>
                   </p>
                     {this.votePosition(vote.position)}
                 </div>
