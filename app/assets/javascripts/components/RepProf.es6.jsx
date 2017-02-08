@@ -8,6 +8,7 @@ class RepProf extends React.Component{
     }
     this.handleClick = this.handleClick.bind(this)
     this.renderTabs = this.renderTabs.bind(this)
+    this.votePosition = this.votePosition.bind(this)
   }
 
 
@@ -63,8 +64,9 @@ class RepProf extends React.Component{
     // this.props.onGetHistoricalPositions(memberId);
   };
 
-
-
+  votePosition(vote) {
+    console.log(vote);
+  };
 
   render() {
 
@@ -114,13 +116,15 @@ class RepProf extends React.Component{
       )
 
       var historicalVotesPosition = (
-          this.props.historicalVotes.map(function(vote) {
+          this.props.historicalVotes.map((vote) => {
             return(
                 <div className="bills">
                   <p>{vote.description}
                     <span className="vote-date">{vote.date}</span>
                   </p>
-                  <p className="vote-position">{vote.position}</p>
+                  <div className="vote-container">
+                    {this.votePosition(vote.description)}
+                  </div>
                 </div>
               )
             })
@@ -131,13 +135,13 @@ class RepProf extends React.Component{
        <div>
             <p className= "rep-name" id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
               {details}
-            <div className="upcoming">
+            <div className="upcoming tab-container">
               {billDetails}
             </div>
-            <div className="tab-content history">
+            <div className="tab-content history tab-container">
               {historicalVotesPosition}
             </div>
-            <div className="tab-content tweets">
+            <div className="tab-content tweets tab-container">
               {timeline}
             </div>
         </div>
