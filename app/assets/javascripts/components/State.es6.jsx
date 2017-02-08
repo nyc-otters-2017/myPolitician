@@ -8,7 +8,6 @@ class State extends React.Component{
   }
 
   componentDidMount() {
-    // debugger
     this.drawMap()
   }
 
@@ -95,7 +94,7 @@ class State extends React.Component{
           this.props.onGetMember(ny.properties.Member_Id)
           this.props.onGetMemberBills(ny.properties.Member_Id)
           this.props.onGetStateMembers()
-      
+
           }.bind(this))
     }.bind(this))
 

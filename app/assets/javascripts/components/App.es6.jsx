@@ -1,6 +1,5 @@
 class App extends React.Component {
 
-
   constructor(props) {
     super(props)
     this.state = {
@@ -20,21 +19,15 @@ class App extends React.Component {
     this.getTwitter             = this.getTwitter.bind(this)
     this.getHistoricalPositions = this.getHistoricalPositions.bind(this)
     this.getName                = this.getName.bind(this)
-
-
   }
-
 
 
 // Props for MapPage
 ////////////////////
 // Currently only returns senate members from NY state
 
-
-
   getName(name){
     member = this.state.houseMember.twitter_id
-    // debugger
   }
   getStateMembers(){
     // let key = this.state.key
@@ -66,11 +59,9 @@ class App extends React.Component {
 
   }
 
+
 // Rep Profile props
 ////////////////////
-
-
-
 
   getMember(id) {
       let key = this.state.key
@@ -92,7 +83,6 @@ class App extends React.Component {
         beforeSend: function(request) {
           request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
         }
-
       })
       .done(function(response) {
         this.setState({repBills: response.results[0].bills})
@@ -100,9 +90,7 @@ class App extends React.Component {
   }
 
 
-
   getTwitter(twitterHandle) {
-    // debugger
     $.ajax({
       type: 'post',
       url: 'maps/congress_tweets',
@@ -115,7 +103,6 @@ class App extends React.Component {
 
 
   getHistoricalPositions(id) {
-
     $.ajax({
       url:'https://api.propublica.org/congress/v1/members/' + id + '/votes.json',
       beforeSend: function(request) {
@@ -124,12 +111,8 @@ class App extends React.Component {
     })
     .done(function(response) {
       this.setState({historicalVotes: response.results[0].votes})
-
     }.bind(this))
-
   }
-
-
 
 
 
@@ -162,7 +145,6 @@ class App extends React.Component {
           repBills                  ={this.state.repBills}
           onGetHistoricalPositions  ={this.getHistoricalPositions}
           historicalVotes           ={this.state.historicalVotes}
-
         />
       </div>
     )

@@ -3,9 +3,12 @@ class MapPage extends React.Component {
   constructor() {
     super()
   }
+
 componentDidMount(){
 
 }
+
+
   render() {
     return(
       <State
