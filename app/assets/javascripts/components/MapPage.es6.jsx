@@ -7,7 +7,6 @@ componentDidMount(){
 
 }
   render() {
-    // console.log('success', this.props.houseMember)
     return(
       <State
         onGetName ={this.props.onGetName}

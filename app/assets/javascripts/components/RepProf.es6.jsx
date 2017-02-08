@@ -71,7 +71,7 @@ class RepProf extends React.Component{
          this.props.singleRepresentative.map(function(profile) {
             return(
               <div>
-                <h3 className="soc-acc">Social Media </h3>
+                <h3 className="soc-acc"></h3>
                   <a href={"http://www.facebook.com/" + profile.facebook_account}><i className="fa fa-facebook-official social-icon" aria-hidden="true"></i></a>
                   <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
 
