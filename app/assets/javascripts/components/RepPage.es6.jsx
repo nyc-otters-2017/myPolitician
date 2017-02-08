@@ -30,6 +30,7 @@ componentDidMount() {
         {this.props.houseMember.map(function(rep, indx){
           return(
             <RepProf
+
               data                     ={rep}
               singleRepresentative     ={this.props.singleRepresentative}
               onGetMember              ={this.props.onGetMember}
@@ -39,7 +40,8 @@ componentDidMount() {
               timeline                 ={this.props.timeline}
               repBills                 ={this.props.repBills}
               historicalVotes          ={this.props.historicalVotes}
-    
+              defaultShowInfo          ={this.props.defaultShowInfo}
+
               />
           )
         }.bind(this))}

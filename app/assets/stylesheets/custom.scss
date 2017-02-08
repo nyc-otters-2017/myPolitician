@@ -6,7 +6,7 @@ a {
   color: #34495e;
 }
 
-a:hover {
+a:hover, a:visited, a:link, a:active {
   text-decoration: none;
 }
 
@@ -70,11 +70,11 @@ svg {
 
 .social-media {
   text-align: center;
-  // margin: 35px 0;
+  margin: 10px 0;
 }
 .social-icon {
   font-size: 2.8em !important;
-  margin: 35px;
+  margin: 30px 60px;
 }
 
 .rep-name {
@@ -89,6 +89,9 @@ svg {
   display: none;
 }
 
+.tab-container {
+  margin-left: 15px;
+}
 .tabs {
     padding: 0;
     float: left;
@@ -137,19 +140,43 @@ svg {
   border-bottom-color: #bbb;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-  // padding: 5px 30px 10px 0;
+}
+
+.bills p{
+  font-size: 1.1em;
+}
+
+.vote-container {
+  text-align: right;
 }
 
 .vote-date {
   color: #bbb;
   font-variant: small-caps;
-  margin-left: 10px;
+  margin: 0 10px;
 }
 
-.vote-position {
-  font-size: 1.2em;
+.voted {
+  display: inline-block;
   text-align: right;
-  margin: 25px;
+}
+
+.vote-yes {
+  text-align: right;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #2ecc71;
+  display: inline-block;
+  margin: 15px 15px 15px 0;
+}
+
+.vote-no {
+  text-align: right;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #e74c3c;
+  display: inline-block;
+  margin: 15px 15px 15px 0;
 }
 
 .map-container {
@@ -197,11 +224,9 @@ blockquote.twitter-tweet {
   border-bottom-color: #bbb;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-  font: bold 14px/18px Helvetica, Arial, sans-serif;
   color: #000;
 }
 
 blockquote.twitter-tweet p {
-  font: normal 18px/24px Georgia, "Times New Roman", Palatino, serif;
   margin: 0 5px 10px 0;
 }
