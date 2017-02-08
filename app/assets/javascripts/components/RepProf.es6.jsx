@@ -102,7 +102,7 @@ class RepProf extends React.Component{
       } else {
         var billDetails = (
 
-            <p className="vote-date">This Representative has not introduced any recent bills</p>
+            <p className="no-bills">This Representative has not introduced any recent bills</p>
 
         )
       };

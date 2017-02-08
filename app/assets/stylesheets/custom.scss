@@ -38,7 +38,7 @@ header h1{
 }
 
 svg {
-    border: 1px solid black;
+    border: 1px solid #bbb;
 
 }
 
@@ -148,6 +148,11 @@ svg {
   font-size: 1.1em;
 }
 
+.no-bills {
+  color: #bbb;
+  font-size: 1.1em;
+}
+
 .vote-container {
   text-align: right;
 }
@@ -228,6 +233,10 @@ svg {
   text-align: center;
   width: 250px;
   height: 125px;
+}
+
+.comments-container {
+  margin-top: 50px;
 }
 
 blockquote.twitter-tweet {

@@ -84,10 +84,10 @@ class State extends React.Component{
           .on("mouseout", function(ny) {
             tooltip.style("opacity", 0);
           })
-
-// This triggers the events to fire
-        g.selectAll(".feature")
+      g.selectAll(".feature")
         .on("click", function(ny) {
+          $(".feature").css("fill", "#34495e")
+          $(event.target).css("fill", "#bbb")
           this.props.onGetHouseMember(ny.properties.CD114FP)
           this.props.onGetHistoricalPositions(ny.properties.Member_Id)
           this.props.onGetMember(ny.properties.Member_Id)
