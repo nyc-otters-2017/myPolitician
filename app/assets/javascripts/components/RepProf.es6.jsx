@@ -13,6 +13,7 @@ class RepProf extends React.Component{
 
 
   componentDidMount() {
+    document.addEventListener('fb_init', e => FB.XFBML.parse());
     this.renderTabs();
   }
 
@@ -77,6 +78,7 @@ class RepProf extends React.Component{
   render() {
     if(this.state.show == true || this.props.defaultShowInfo) {
       // Displays Contact Information for Representative
+
       var details = (
          this.props.singleRepresentative.map(function(profile) {
             return(
@@ -138,6 +140,7 @@ class RepProf extends React.Component{
     return(
        <div>
             <p className= "rep-name" id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
+        
               {details}
             <div className="upcoming tab-container">
               {billDetails}
