@@ -11,7 +11,6 @@ class RepProf extends React.Component{
     this.votePosition = this.votePosition.bind(this)
   }
 
-
   componentDidMount() {
     document.addEventListener('fb_init', e => FB.XFBML.parse());
     this.renderTabs();
@@ -51,39 +50,27 @@ class RepProf extends React.Component{
 
   handleClick(e) {
     e.preventDefault();
-
     this.setState({show: !this.state.show});
-
-    // name = e.target.innerHTML;
-    // memberId = this.refs[name].id;
-
-    // This function uses twitter handle passed down as a prop
-    //It can be bound to a different event
-    // this.props.onGetTwitter(this.props.data.twitter_id);
-    // this.props.onGetMember(memberId);
-    // this.props.onGetMemberBills(memberId);
-    // this.props.onGetHistoricalPositions(memberId);
   };
+
 
   votePosition(vote) {
     if(vote === "Yes"){
       return (<div className="vote-container"><p className='voted vote-date'>Voted</p><p className='vote-yes'>{vote}</p></div>)
-
     }
     else{
       return (<div className="vote-container"><p className='voted vote-date'>Voted</p><p className='vote-no'>{vote}</p></div>)
     }
   };
 
+
   render() {
     if(this.state.show == true || this.props.defaultShowInfo) {
       // Displays Contact Information for Representative
-
       var details = (
          this.props.singleRepresentative.map(function(profile) {
             return(
               <div>
-
                 <div className="social-media">
                   <a href={"http://www.facebook.com/" + profile.facebook_account}><i className="fa fa-facebook-official social-icon" aria-hidden="true"></i></a>
                   <a href={"http://www.twitter.com/" + profile.twitter_account}><i className="fa fa-twitter social-icon" aria-hidden="true"></i></a>
@@ -96,22 +83,20 @@ class RepProf extends React.Component{
               </div>
             )
           })
-      )
+      );
 
       var billDetails = (
-
         this.props.repBills.map(function(bill) {
             return(
               <div className="bills" >
                 <p>{bill.title}</p>
-                {console.log(bill)}
                 <div className ="search-bill">
                   <a href={"https://www.congress.gov/search?q={%22source%22:%22legislation%22,%22search%22:%22" + bill.number + "%22}&searchResultViewType=expanded"}><span className="vote-date"><i className="fa fa-search search-icon" aria-hidden="true"></i>More Information</span></a>
                 </div>
               </div>
             )
           })
-        )
+        );
 
       var timeline = (
         this.props.timeline.map(function(tweet){
@@ -125,7 +110,7 @@ class RepProf extends React.Component{
           )
         })
 
-      )
+      );
 
       var historicalVotesPosition = (
           this.props.historicalVotes.map((vote) => {
@@ -138,13 +123,12 @@ class RepProf extends React.Component{
                 </div>
               )
             })
-          )
+          );
       }
 
     return(
        <div>
             <p className= "rep-name" id={this.props.data.id} ref = {this.props.data.name} ><a onClick={this.handleClick} href="#">{this.props.data.name}</a></p>
-        
               {details}
             <div className="upcoming tab-container">
               {billDetails}
@@ -156,7 +140,7 @@ class RepProf extends React.Component{
               {timeline}
             </div>
         </div>
-      )
+      );
   }
 
 }

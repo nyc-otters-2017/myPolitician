@@ -1,10 +1,13 @@
 class RepPage extends React.Component{
+
   constructor(props){
     super(props)
   }
 
 componentDidMount() {
 }
+
+
   render() {
     return(
       <section>
@@ -22,7 +25,6 @@ componentDidMount() {
               timeline                    ={this.props.timeline}
               repBills                    ={this.props.repBills}
               historicalVotes             ={this.props.historicalVotes}
-
               />
            )
         }.bind(this))}
@@ -30,7 +32,6 @@ componentDidMount() {
         {this.props.houseMember.map(function(rep, indx){
           return(
             <RepProf
-
               data                     ={rep}
               singleRepresentative     ={this.props.singleRepresentative}
               onGetMember              ={this.props.onGetMember}
@@ -41,7 +42,6 @@ componentDidMount() {
               repBills                 ={this.props.repBills}
               historicalVotes          ={this.props.historicalVotes}
               defaultShowInfo          ={this.props.defaultShowInfo}
-
               />
           )
         }.bind(this))}
