@@ -86,8 +86,8 @@ class State extends React.Component{
           })
       g.selectAll(".feature")
         .on("click", function(ny) {
-          $(".feature").css("fill", "#34495e")
-          $(event.target).css("fill", "#bbb")
+          $(".feature").removeClass("feature-click")
+          $(event.target).addClass("feature-click")
           this.props.onGetHouseMember(ny.properties.CD114FP)
           this.props.onGetHistoricalPositions(ny.properties.Member_Id)
           this.props.onGetMember(ny.properties.Member_Id)
@@ -97,29 +97,27 @@ class State extends React.Component{
     }.bind(this))
 
     function reset() {
-        active.classed("active", false);
-        active = d3.select(null);
+      active.classed("active", false);
+      active = d3.select(null);
 
-        svg.transition()
+      svg.transition()
             .duration(750)
             .call(zoom.translate([0, 0]).scale(1).event);
     }
 
     function zoomed() {
-        g.style("stroke-width", 1.5 / d3.event.scale + "px");
-        g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+      g.style("stroke-width", 1.5 / d3.event.scale + "px");
+      g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
     }
 
     function stopped() {
-          if (d3.event.defaultPrevented) d3.event.stopPropagation();
-        }
-    }
+      if (d3.event.defaultPrevented) d3.event.stopPropagation();
+      }
+  }
 
-
-
-    render(){
-      return(
-        <h1></h1>
+  render(){
+    return(
+      <h1></h1>
       )
     }
 }
