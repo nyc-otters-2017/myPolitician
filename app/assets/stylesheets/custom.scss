@@ -205,6 +205,12 @@ svg {
   text-align: center;
 }
 
+.zoom-button {
+  position: absolute;
+  left: 13%;
+  top: 10px;
+}
+
 .feature {
   fill: #34495e;
   cursor: pointer;
@@ -216,6 +222,10 @@ svg {
 
 .feature.active{
   fill:blue;
+}
+
+.feature-click {
+  fill: #bbb;
 }
 
 .mesh {
