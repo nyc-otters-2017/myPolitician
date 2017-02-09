@@ -28,7 +28,7 @@ class State extends React.Component{
         .scale(1)
         .scaleExtent ([1, 20])
         .on("zoom", zoomed);
-
+    
     var path = d3.geo.path()
         .projection(projection);
 
@@ -84,7 +84,7 @@ class State extends React.Component{
           .on("mouseout", function(ny) {
             tooltip.style("opacity", 0);
           })
-          
+
       g.selectAll(".feature")
         .on("click", function(ny) {
           $(".feature").removeClass("feature-click")
@@ -96,6 +96,9 @@ class State extends React.Component{
           this.props.onGetStateMembers()
           }.bind(this))
     }.bind(this))
+
+    // d3.selectAll("button[data-zoom]")
+    //   .on("click", clicked);
 
     function reset() {
       active.classed("active", false);
@@ -113,7 +116,29 @@ class State extends React.Component{
 
     function stopped() {
       if (d3.event.defaultPrevented) d3.event.stopPropagation();
-      }
+    }
+
+  //   function clicked() {
+  //     svg.call(zoom.event); 
+  //     var center0 = zoom.center(), translate0 = zoom.translate(), coordinates0 = coordinates(center0);
+  //     zoom.scale(zoom.scale() * Math.pow(2, +this.getAttribute("data-zoom")));
+
+  //     var center1 = point(coordinates0);
+  //     zoom.translate([translate0[0] + center0[0] - center1[0], translate0[1] + center0[1] - center1[1]]);
+
+  //     svg.transition().duration(750).call(zoom.event);
+  //   }
+
+  //   function coordinates(point) {
+  //     var scale = zoom.scale(), translate = zoom.translate();
+  //     return [(point[0] - translate[0]) / scale, (point[1] - translate[1]) / scale];
+  //   }
+
+  //   function point(coordinates) {
+  //     var scale = zoom.scale(), translate = zoom.translate();
+  //     return [coordinates[0] * scale + translate[0], coordinates[1] * scale + translate[1]];
+  //   }
+
   }
 
   render(){
