@@ -84,6 +84,7 @@ class State extends React.Component{
           .on("mouseout", function(ny) {
             tooltip.style("opacity", 0);
           })
+          
       g.selectAll(".feature")
         .on("click", function(ny) {
           $(".feature").removeClass("feature-click")
