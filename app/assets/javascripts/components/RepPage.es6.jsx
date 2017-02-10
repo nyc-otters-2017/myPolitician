@@ -27,6 +27,8 @@ componentDidMount() {
               historicalVotes             ={this.props.historicalVotes}
               onGetStateMemberById        ={this.props.onGetStateMemberById}
               singleStateRep              ={this.props.singleStateRep}
+              onGetStateMemberBills       ={this.props.onGetStateMemberBills}
+              stateRepBills               ={this.props.stateRepBills}
               />
            )
         }.bind(this))}

@@ -55,6 +55,7 @@ class StateRepProf extends React.Component {
     name = e.target.innerHTML
     memberId = this.refs[name].id
     this.props.onGetStateMemberById(memberId)
+    this.props.onGetStateMemberBills(memberId)       
 
 
   };
@@ -92,9 +93,9 @@ class StateRepProf extends React.Component {
       );
 
 
-      if(this.props.repBills.length > 0) {
+      if(this.props.stateRepBills.length > 0) {
         var billDetails = (
-          this.props.repBills.map(function(bill,i) {
+          this.props.stateRepBills.map(function(bill,i) {
               return(
                 <div key={i} className="bills" >
                   <p>{bill.title}</p>

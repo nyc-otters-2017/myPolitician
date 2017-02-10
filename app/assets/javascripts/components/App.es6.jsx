@@ -11,7 +11,8 @@ class App extends React.Component {
       repBills: [],
       timeline: [],
       historicalVotes: [],
-      singleStateRep: []
+      singleStateRep: [],
+      stateRepBills: []
       
     }
     this.getStateMembers        = this.getStateMembers.bind(this)
@@ -22,6 +23,7 @@ class App extends React.Component {
     this.getHistoricalPositions = this.getHistoricalPositions.bind(this)
     this.getName                = this.getName.bind(this)
     this.getStateMemberById		= this.getStateMemberById.bind(this)
+    this.getStateMemberBills	= this.getStateMemberBills.bind(this)
   }
 
 
@@ -86,7 +88,7 @@ class App extends React.Component {
         }
       })
       .done(function(response) {
-      debugger
+
         this.setState({singleStateRep: response.results})
       }.bind(this))
   }
@@ -103,6 +105,21 @@ class App extends React.Component {
         this.setState({repBills: response.results[0].bills})
       }.bind(this))
   }
+
+
+  getStateMemberBills(id) {
+      let key = this.state.key
+      $.ajax({
+        url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
+        beforeSend: function(request) {
+          request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+        }
+      })
+      .done(function(response) {
+        this.setState({stateRepBills: response.results[0].bills})
+      }.bind(this))
+  }
+
 
 
   getTwitter(twitterHandle) {
@@ -163,7 +180,8 @@ class App extends React.Component {
           historicalVotes           ={this.state.historicalVotes}
           onGetStateMemberById		={this.getStateMemberById}
           singleStateRep			={this.state.singleStateRep}
-
+          onGetStateMemberBills		={this.getStateMemberBills}
+          stateRepBills				={this.state.stateRepBills}
         />
       </div>
     )
