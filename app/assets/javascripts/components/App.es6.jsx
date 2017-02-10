@@ -10,15 +10,25 @@ class App extends React.Component {
       singleRepresentative: [],
       repBills: [],
       timeline: [],
-      historicalVotes: []
+      historicalVotes: [],
+      singleStateRep: [],
+      stateRepBills: [],
+      historicalStateRepVotes: [],
+      stateRepTimeline: []
+
+      
     }
-    this.getStateMembers        = this.getStateMembers.bind(this)
-    this.getHouseMember         = this.getHouseMember.bind(this)
-    this.getMember              = this.getMember.bind(this)
-    this.getMemberBills         = this.getMemberBills.bind(this)
-    this.getTwitter             = this.getTwitter.bind(this)
-    this.getHistoricalPositions = this.getHistoricalPositions.bind(this)
-    this.getName                = this.getName.bind(this)
+    this.getStateMembers        		= this.getStateMembers.bind(this)
+    this.getHouseMember         		= this.getHouseMember.bind(this)
+    this.getMember              		= this.getMember.bind(this)
+    this.getMemberBills         		= this.getMemberBills.bind(this)
+    this.getTwitter             		= this.getTwitter.bind(this)
+    this.getHistoricalPositions 		= this.getHistoricalPositions.bind(this)
+    this.getName                		= this.getName.bind(this)
+    this.getStateMemberById				= this.getStateMemberById.bind(this)
+    this.getStateMemberBills			= this.getStateMemberBills.bind(this)
+    this.getStateRepHistoricalPositions	= this.getStateRepHistoricalPositions.bind(this)
+    this.getStateRepTwitter				= this.getStateRepTwitter.bind(this)
   }
 
 
@@ -64,7 +74,6 @@ class App extends React.Component {
 ////////////////////
 
   getMember(id) {
-      let key = this.state.key
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
         beforeSend: function(request) {
@@ -73,6 +82,19 @@ class App extends React.Component {
       })
       .done(function(response) {
         this.setState({singleRepresentative: response.results})
+      }.bind(this))
+  }
+
+  getStateMemberById(id){
+  	  $.ajax({
+        url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
+        beforeSend: function(request) {
+          request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+        }
+      })
+      .done(function(response) {
+        this.setState({singleStateRep: response.results})
+        this.getTwitter(response.results[0].twitter_account)
       }.bind(this))
   }
 
@@ -90,6 +112,21 @@ class App extends React.Component {
   }
 
 
+  getStateMemberBills(id) {
+      let key = this.state.key
+      $.ajax({
+        url:'https://api.propublica.org/congress/v1/members/' + id + '/bills/introduced.json',
+        beforeSend: function(request) {
+          request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+        }
+      })
+      .done(function(response) {
+        this.setState({stateRepBills: response.results[0].bills})
+      }.bind(this))
+  }
+
+
+
   getTwitter(twitterHandle) {
     $.ajax({
       type: 'post',
@@ -98,6 +135,18 @@ class App extends React.Component {
     })
     .done(function(response) {
       this.setState({timeline: response})
+    }.bind(this))
+  }
+
+
+  getStateRepTwitter(twitterHandle) {
+    $.ajax({
+      type: 'post',
+      url: 'maps/congress_tweets',
+      data: {twitter_account: { handle: twitterHandle }}
+    })
+    .done(function(response) {
+      this.setState({stateRepTimeline: response})
     }.bind(this))
   }
 
@@ -113,6 +162,19 @@ class App extends React.Component {
       this.setState({historicalVotes: response.results[0].votes})
     }.bind(this))
   }
+
+  getStateRepHistoricalPositions(id) {
+    $.ajax({
+      url:'https://api.propublica.org/congress/v1/members/' + id + '/votes.json',
+      beforeSend: function(request) {
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+      }
+    })
+    .done(function(response) {
+      this.setState({historicalStateRepVotes: response.results[0].votes})
+    }.bind(this))
+  }
+
 
 
 
@@ -140,12 +202,19 @@ class App extends React.Component {
           defaultShowInfo           ={this.state.defaultShow}
 
           // apiKey={this.state.key}
-          onGetTwitter              ={this.getTwitter}
-          timeline                  ={this.state.timeline}
-          onGetMemberBills          ={this.getMemberBills}
-          repBills                  ={this.state.repBills}
-          onGetHistoricalPositions  ={this.getHistoricalPositions}
-          historicalVotes           ={this.state.historicalVotes}
+          onGetTwitter             		   ={this.getTwitter}
+          timeline                  	   ={this.state.timeline}
+          stateRepTimeline 				   ={this.state.stateRepTimeline}
+          onGetMemberBills          	   ={this.getMemberBills}
+          repBills                  	   ={this.state.repBills}
+          onGetHistoricalPositions  	   ={this.getHistoricalPositions}
+          historicalVotes           	   ={this.state.historicalVotes}
+          onGetStateMemberById			   ={this.getStateMemberById}
+          singleStateRep				   ={this.state.singleStateRep}
+          onGetStateMemberBills			   ={this.getStateMemberBills}
+          stateRepBills					   ={this.state.stateRepBills}
+          onGetStateRepHistoricalPositions ={this.getStateRepHistoricalPositions}
+          historicalStateRepVotes     	   ={this.state.historicalStateRepVotes}
         />
       </div>
     )

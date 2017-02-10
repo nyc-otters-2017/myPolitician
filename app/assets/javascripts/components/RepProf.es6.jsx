@@ -12,7 +12,6 @@ class RepProf extends React.Component{
   }
 
   componentDidMount() {
-    document.addEventListener('fb_init', e => FB.XFBML.parse());
     this.renderTabs();
   }
 
