@@ -12,18 +12,20 @@ class App extends React.Component {
       timeline: [],
       historicalVotes: [],
       singleStateRep: [],
-      stateRepBills: []
+      stateRepBills: [],
+      historicalStateRepVotes: []
       
     }
-    this.getStateMembers        = this.getStateMembers.bind(this)
-    this.getHouseMember         = this.getHouseMember.bind(this)
-    this.getMember              = this.getMember.bind(this)
-    this.getMemberBills         = this.getMemberBills.bind(this)
-    this.getTwitter             = this.getTwitter.bind(this)
-    this.getHistoricalPositions = this.getHistoricalPositions.bind(this)
-    this.getName                = this.getName.bind(this)
-    this.getStateMemberById		= this.getStateMemberById.bind(this)
-    this.getStateMemberBills	= this.getStateMemberBills.bind(this)
+    this.getStateMembers        		= this.getStateMembers.bind(this)
+    this.getHouseMember         		= this.getHouseMember.bind(this)
+    this.getMember              		= this.getMember.bind(this)
+    this.getMemberBills         		= this.getMemberBills.bind(this)
+    this.getTwitter             		= this.getTwitter.bind(this)
+    this.getHistoricalPositions 		= this.getHistoricalPositions.bind(this)
+    this.getName                		= this.getName.bind(this)
+    this.getStateMemberById				= this.getStateMemberById.bind(this)
+    this.getStateMemberBills			= this.getStateMemberBills.bind(this)
+    this.getStateRepHistoricalPositions	= this.getStateRepHistoricalPositions.bind(this)
   }
 
 
@@ -146,6 +148,19 @@ class App extends React.Component {
     }.bind(this))
   }
 
+  getStateRepHistoricalPositions(id) {
+    $.ajax({
+      url:'https://api.propublica.org/congress/v1/members/' + id + '/votes.json',
+      beforeSend: function(request) {
+        request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+      }
+    })
+    .done(function(response) {
+      this.setState({historicalStateRepVotes: response.results[0].votes})
+    }.bind(this))
+  }
+
+
 
 
   render(){
@@ -172,16 +187,18 @@ class App extends React.Component {
           defaultShowInfo           ={this.state.defaultShow}
 
           // apiKey={this.state.key}
-          onGetTwitter              ={this.getTwitter}
-          timeline                  ={this.state.timeline}
-          onGetMemberBills          ={this.getMemberBills}
-          repBills                  ={this.state.repBills}
-          onGetHistoricalPositions  ={this.getHistoricalPositions}
-          historicalVotes           ={this.state.historicalVotes}
-          onGetStateMemberById		={this.getStateMemberById}
-          singleStateRep			={this.state.singleStateRep}
-          onGetStateMemberBills		={this.getStateMemberBills}
-          stateRepBills				={this.state.stateRepBills}
+          onGetTwitter             		   ={this.getTwitter}
+          timeline                  	   ={this.state.timeline}
+          onGetMemberBills          	   ={this.getMemberBills}
+          repBills                  	   ={this.state.repBills}
+          onGetHistoricalPositions  	   ={this.getHistoricalPositions}
+          historicalVotes           	   ={this.state.historicalVotes}
+          onGetStateMemberById			   ={this.getStateMemberById}
+          singleStateRep				   ={this.state.singleStateRep}
+          onGetStateMemberBills			   ={this.getStateMemberBills}
+          stateRepBills					   ={this.state.stateRepBills}
+          onGetStateRepHistoricalPositions ={this.getStateRepHistoricalPositions}
+          historicalStateRepVotes     	   ={this.state.historicalStateRepVotes}
         />
       </div>
     )

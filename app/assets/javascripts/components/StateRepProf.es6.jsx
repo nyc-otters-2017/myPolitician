@@ -49,13 +49,14 @@ class StateRepProf extends React.Component {
 
   handleClick(e) {
     e.preventDefault()
-    debugger
+ 
     this.setState({show: !this.state.show})
 
     name = e.target.innerHTML
     memberId = this.refs[name].id
     this.props.onGetStateMemberById(memberId)
-    this.props.onGetStateMemberBills(memberId)       
+    this.props.onGetStateMemberBills(memberId)  
+    this.props.onGetStateRepHistoricalPositions(memberId)
 
 
   };
@@ -129,7 +130,7 @@ class StateRepProf extends React.Component {
       );
 
       var historicalVotesPosition = (
-          this.props.historicalVotes.map((vote,i) => {
+          this.props.historicalStateRepVotes.map((vote,i) => {
             return(
                 <div key={i} className="bills">
                   <p>{vote.description}
