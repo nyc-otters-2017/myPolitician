@@ -10,7 +10,9 @@ class App extends React.Component {
       singleRepresentative: [],
       repBills: [],
       timeline: [],
-      historicalVotes: []
+      historicalVotes: [],
+      singleStateRep: []
+      
     }
     this.getStateMembers        = this.getStateMembers.bind(this)
     this.getHouseMember         = this.getHouseMember.bind(this)
@@ -19,6 +21,7 @@ class App extends React.Component {
     this.getTwitter             = this.getTwitter.bind(this)
     this.getHistoricalPositions = this.getHistoricalPositions.bind(this)
     this.getName                = this.getName.bind(this)
+    this.getStateMemberById		= this.getStateMemberById.bind(this)
   }
 
 
@@ -64,7 +67,6 @@ class App extends React.Component {
 ////////////////////
 
   getMember(id) {
-      let key = this.state.key
       $.ajax({
         url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
         beforeSend: function(request) {
@@ -73,6 +75,19 @@ class App extends React.Component {
       })
       .done(function(response) {
         this.setState({singleRepresentative: response.results})
+      }.bind(this))
+  }
+
+  getStateMemberById(id){
+  	  $.ajax({
+        url:'https://api.propublica.org/congress/v1/members/' +id + '.json',
+        beforeSend: function(request) {
+          request.setRequestHeader("X-API-Key", "y3spXskaU43BBv4WCh6BazYtzVOToHf1ZUhTiiQc");
+        }
+      })
+      .done(function(response) {
+      debugger
+        this.setState({singleStateRep: response.results})
       }.bind(this))
   }
 
@@ -146,6 +161,9 @@ class App extends React.Component {
           repBills                  ={this.state.repBills}
           onGetHistoricalPositions  ={this.getHistoricalPositions}
           historicalVotes           ={this.state.historicalVotes}
+          onGetStateMemberById		={this.getStateMemberById}
+          singleStateRep			={this.state.singleStateRep}
+
         />
       </div>
     )

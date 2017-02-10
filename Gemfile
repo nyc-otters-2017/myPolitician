@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '~>2.3.0'
+ruby '~>2.2.4'
 gem 'twitter'
 gem 'oauth'
 gem 'dotenv-rails', groups: [:development, :test]
@@ -13,7 +13,7 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
-# Use SCSS for stylesheets
+# Use SCSS for stylesheets 
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

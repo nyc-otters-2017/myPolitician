@@ -14,11 +14,10 @@ componentDidMount() {
         <h2> My State Rep Info </h2>
         {this.props.stateMembers.map(function(rep, i){
           return(
-            <RepProf
+            <StateRepProf
               data                        ={rep}
               key                         ={i}
-              singleRepresentative        ={this.props.singleRepresentative}
-              onGetMember                 ={this.props.onGetMember}
+          
               // apiKey={this.props.apiKey}
               onGetTwitter                ={this.props.onGetTwitter}
               onGetMemberBills            ={this.props.onGetMemberBills}
@@ -26,6 +25,8 @@ componentDidMount() {
               timeline                    ={this.props.timeline}
               repBills                    ={this.props.repBills}
               historicalVotes             ={this.props.historicalVotes}
+              onGetStateMemberById        ={this.props.onGetStateMemberById}
+              singleStateRep              ={this.props.singleStateRep}
               />
            )
         }.bind(this))}
