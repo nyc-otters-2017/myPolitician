@@ -16,7 +16,7 @@ class App extends React.Component {
       historicalStateRepVotes: [],
       stateRepTimeline: []
 
-      
+
     }
     this.getStateMembers        		= this.getStateMembers.bind(this)
     this.getHouseMember         		= this.getHouseMember.bind(this)
@@ -94,7 +94,7 @@ class App extends React.Component {
       })
       .done(function(response) {
         this.setState({singleStateRep: response.results})
-        this.getTwitter(response.results[0].twitter_account)
+        this.getStateRepTwitter(response.results[0].twitter_account)
       }.bind(this))
   }
 
@@ -182,7 +182,7 @@ class App extends React.Component {
     return(
       <div>
         <MapPage
-        
+
           onGetName                 ={this.getName}
           houseMember               ={this.state.houseMember}
           onGetStateMembers         ={this.getStateMembers}
