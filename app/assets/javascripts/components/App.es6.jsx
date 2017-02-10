@@ -13,7 +13,9 @@ class App extends React.Component {
       historicalVotes: [],
       singleStateRep: [],
       stateRepBills: [],
-      historicalStateRepVotes: []
+      historicalStateRepVotes: [],
+      stateRepTimeline: []
+
       
     }
     this.getStateMembers        		= this.getStateMembers.bind(this)
@@ -26,6 +28,7 @@ class App extends React.Component {
     this.getStateMemberById				= this.getStateMemberById.bind(this)
     this.getStateMemberBills			= this.getStateMemberBills.bind(this)
     this.getStateRepHistoricalPositions	= this.getStateRepHistoricalPositions.bind(this)
+    this.getStateRepTwitter				= this.getStateRepTwitter.bind(this)
   }
 
 
@@ -90,8 +93,8 @@ class App extends React.Component {
         }
       })
       .done(function(response) {
-
         this.setState({singleStateRep: response.results})
+        this.getTwitter(response.results[0].twitter_account)
       }.bind(this))
   }
 
@@ -132,6 +135,18 @@ class App extends React.Component {
     })
     .done(function(response) {
       this.setState({timeline: response})
+    }.bind(this))
+  }
+
+
+  getStateRepTwitter(twitterHandle) {
+    $.ajax({
+      type: 'post',
+      url: 'maps/congress_tweets',
+      data: {twitter_account: { handle: twitterHandle }}
+    })
+    .done(function(response) {
+      this.setState({stateRepTimeline: response})
     }.bind(this))
   }
 
@@ -189,6 +204,7 @@ class App extends React.Component {
           // apiKey={this.state.key}
           onGetTwitter             		   ={this.getTwitter}
           timeline                  	   ={this.state.timeline}
+          stateRepTimeline 				   ={this.state.stateRepTimeline}
           onGetMemberBills          	   ={this.getMemberBills}
           repBills                  	   ={this.state.repBills}
           onGetHistoricalPositions  	   ={this.getHistoricalPositions}

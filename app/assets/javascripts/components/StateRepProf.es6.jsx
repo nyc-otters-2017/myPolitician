@@ -58,7 +58,6 @@ class StateRepProf extends React.Component {
     this.props.onGetStateMemberBills(memberId)  
     this.props.onGetStateRepHistoricalPositions(memberId)
 
-
   };
 
 
@@ -116,7 +115,7 @@ class StateRepProf extends React.Component {
       };
 
       var timeline = (
-        this.props.timeline.map(function(tweet,i){
+        this.props.stateRepTimeline.map(function(tweet,i){
           return(
             <section key={i}>
             <blockquote className="twitter-tweet">

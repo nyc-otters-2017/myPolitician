@@ -19,18 +19,19 @@ componentDidMount() {
               key                         ={i}
           
               // apiKey={this.props.apiKey}
-              onGetTwitter                ={this.props.onGetTwitter}
-              onGetMemberBills            ={this.props.onGetMemberBills}
-              onGetHistoricalPositions    ={this.props.onGetHistoricalPositions}
-              timeline                    ={this.props.timeline}
-              repBills                    ={this.props.repBills}
-              historicalVotes             ={this.props.historicalVotes}
-              onGetStateMemberById        ={this.props.onGetStateMemberById}
-              singleStateRep              ={this.props.singleStateRep}
-              onGetStateMemberBills       ={this.props.onGetStateMemberBills}
-              stateRepBills               ={this.props.stateRepBills}
-              historicalStateRepVotes     ={this.props.historicalStateRepVotes}
+              onGetTwitter                     ={this.props.onGetTwitter}
+              onGetMemberBills                 ={this.props.onGetMemberBills}
+              onGetHistoricalPositions         ={this.props.onGetHistoricalPositions}
+              timeline                         ={this.props.timeline}
+              repBills                         ={this.props.repBills}
+              historicalVotes                  ={this.props.historicalVotes}
+              onGetStateMemberById             ={this.props.onGetStateMemberById}
+              singleStateRep                   ={this.props.singleStateRep}
+              onGetStateMemberBills            ={this.props.onGetStateMemberBills}
+              stateRepBills                    ={this.props.stateRepBills}
+              historicalStateRepVotes          ={this.props.historicalStateRepVotes}
               onGetStateRepHistoricalPositions ={this.props.onGetStateRepHistoricalPositions}
+              stateRepTimeline                 ={this.props.stateRepTimeline}
               />
            )
         }.bind(this))}
