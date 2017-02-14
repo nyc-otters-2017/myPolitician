@@ -21,7 +21,8 @@ Raji Ayinla, Nick Himmel, Kane Lee
   - Google's Civic Information API
   - Meetup's API
 
-### Libraries
+### Frameworks and libraries
 
   - Ruby on Rails
   - D3.js
+  - React
